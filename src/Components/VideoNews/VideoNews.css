@@ -1,0 +1,112 @@
+.videonews {
+  padding: 42px 80px 84px 80px;
+}
+.videonews__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 50px;
+  color: var(--primary);
+}
+.videonews__content {
+  display: flex;
+  justify-content: space-between;
+}
+.videonews__contentbar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.videonews__content-bar {
+  position: relative;
+  width: 65%;
+  height: 563px;
+  border-radius: 8px;
+}
+.videonews__contentbar-title {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 25px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 0px 0px 8px 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 35px;
+}
+.videonews__ci {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  height: 563px;
+  margin-left: 21px;
+  background-color: #fff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.videonews__info {
+  width: 100%;
+  height: 507px;
+  padding: 22px;
+  overflow-y: scroll;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.videonews__info::-webkit-scrollbar{
+  width: 0; 
+  height: 0;
+}
+.videonews__info-item {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 0.2px solid #072e4b38;
+}
+.videonews__video {
+  width: 125.45px;
+  height: 70.58px;
+  margin-right: 10px;
+}
+.videonews__info-date {
+  color: #C7C8CA;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+.videonews__info-date svg {
+  margin-right: 7px;
+}
+.videonews__info-title {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  /* margin-right: 40px; */
+}
+.videonews__info-btn {
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: transparent;
+}
+
+@media screen and (max-width:790px) {
+  .videonews__content-bar {
+    display: none;
+  }
+  .videonews__ci {
+    width: 100%;
+    margin: 0;
+  }
+  .videonews__title {
+    margin-bottom: 20px;
+  }
+}

@@ -1,13 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap');
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  /* background-color: #F4F9F8; */
+  background-color: var(--body-color);
+  /* color: #072D4B; */
+  /* color: var(--primary); */
+}
+
+
+.dark {
+  --body-color:#202C36;
+  --primary: #F4F9F8;
+  --sidebar-icon: #F4F9F8;
+  --news-bg: #1e2732;
+  --black:#fff;
+  --select-bg: #21303E;
+  --hover-btn: #202C36;
+  --section-bg: #202C36;
+  --aside-bg: #1e2732;
+}
+:root {
+  --body-color: #F4F9F8;
+  --primary: #072D4B;
+  --news-bg: #fff;
+  --sidebar-icon: #2F9FF8;
+  --black:#000;
+  --select-bg: #F4F9F8;
+  --hover-btn: #fff;
+  --section-bg: #F4F9F8;
+  --aside-bg: #fff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
 }

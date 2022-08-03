@@ -1,0 +1,240 @@
+.aside {
+  width: 335px;
+  padding: 0 15px 23px 15px;
+  margin-left: 20px;
+}
+.aside__lang {
+  padding: 8px 22px;
+  background-color: rgba(47, 159, 248, 0.04);
+  color: var(--primary);
+  border-radius: 4px;
+  outline: none;
+}
+.aside__options {
+  background-color: var(--select-bg);
+}
+.aside__dl {
+  padding: 2px;
+  background: rgba(47, 159, 248, 0.04);
+  border-radius: 4px;
+}
+.aside__dl-btn {
+  border: none;
+  background-color: transparent;
+  padding: 7.25px;
+  border-radius: 4px;
+}
+.aside__dl--active {
+  background-color: #fff;
+}
+.aside__header {
+  width: 335px;
+  padding: 0px 15px 0 15px;
+  margin-left: 20px;
+  /* display: block; */
+  /* margin-bottom: 29px; */
+}
+
+.aside__boxes {
+  justify-content: flex-end;
+}
+.aside__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+  background: #D9D9D9;
+}
+.aside__weather {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+  background: var(--aside-bg);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+}
+.aside__weather-top {
+  padding-bottom: 11px;
+  margin-bottom: 15px;
+  border-bottom: 0.2px solid #072e4b3c;
+}
+.aside__weather-top p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--primary);
+}
+.aside__weather-top button {
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.aside__weather-text {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 7px;
+  color: var(--primary);
+}
+.aside__weather-info {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+  color: var(--primary);
+}
+
+.aside__more {
+  padding: 15px 15px 16px 15px;
+  margin: 20px 0;
+  background: var(--aside-bg);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+.aside__more span {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  margin-left: 14px;
+  color: var(--primary);
+}
+.aside__more-bottom {
+  margin-top: 11px;
+}
+.aside__more-bottom p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  opacity: 0.6;
+  color: var(--primary);
+}
+.aside__more-bottom a{
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 10px 30px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  transition: all 0.4s;
+  border: 0.2px solid #2F9FF8;
+  background-color: #fff;
+  color: #2F9FF8;
+}
+.aside__more-bottom a:hover {
+  color: #fff;
+  background-color: #2F9FF8;
+}
+
+.aside__more-read {
+  background: var(--aside-bg);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 14px 10px 14px 20px;
+}
+.aside__read-top span {
+  margin-left: 14px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--primary);
+}
+.aside__read-info {
+  padding-top: 9px;
+  margin-top: 9px;
+  border-top: 0.2px solid #072e4b3c;
+}
+.aside__read-time {
+  opacity: 0.6;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin-left: 4px;
+  color: var(--primary);
+}
+.aside__read-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 3px;
+  cursor: pointer;
+  opacity: 1;
+  color: var(--primary);
+}
+.aside__read-text:hover {
+  color: #0768B5;
+}
+.aside__more svg path {
+  stroke: var(--primary);
+}
+.aside__more-read svg path {
+  stroke: var(--primary);
+}
+
+.aside__subscribe {
+  border-radius: 4px;
+  padding: 20px 20px 20px 78px;
+  margin-top: 25px;
+  background: #2F9FF8;
+  color: #fff;
+}
+.aside__subscribe-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 11px;
+}
+.aside__subscribe-top span {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  margin-left: 14px;
+}
+.aside__subscribe-bottom div {
+  margin-right: 22px;
+}
+.aside__subscribe-price {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+}
+.aside__subscribe-bottom button {
+  padding: 10px 27px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  border-radius: 4px;
+  border: none;
+  background: #0768B5;
+  color: #fff;
+}
+.aside-messangers {
+  font-size: 22px;
+  color: #fff;
+}
+.aside-messangers:hover {
+  color: #fff;
+}
+.facebook {
+  background-color: #2574FF;
+}
+.twitter {
+  background-color: #1DA1F2;
+}
+.instagram {
+  background-color: #272755;
+}
+.youtube {
+  background-color: #F61C0D;
+}
+.telegram {
+  background-color: #1DA0F0;
+}
+
+@media screen and (max-width:960px){
+  .over-top {
+    display: none;
+  }
+}

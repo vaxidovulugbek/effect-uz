@@ -1,0 +1,207 @@
+.home-icon path{
+  stroke: blue;
+}
+.sidebar {
+  width: 20%;
+  padding: 28px 11px 28px 0;
+  margin-right: 20px;
+  /* color: #072D4B; */
+  color: var(--primary);
+}
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__logo {
+  padding-left: 40px;
+  margin: 0 0 26px 0 !important;
+}
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: pointer;
+  padding: 15px 20px 15px 40px ;
+  border-radius: 0px 37px 37px 0px;
+
+  color: var(--primary);
+}
+.sidebar__item svg {
+  /* color: #072D4B; */
+  color: var(--primary);
+}
+.sidebar__item p {
+  /* color: #072D4B; */
+  color: var(--primary);
+}
+.sidebar__item .accordion {
+  /* color: #072D4B !important; */
+  color: var(--primary);
+}
+/* .sidebar__item:hover {
+  background-color: #E0F0F8;
+} */
+.sidebar__icon {
+  margin-right: 31px;
+}
+
+.sidebar__item-btn {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: pointer;
+  padding: 15px 40px 15px 40px ;
+  border-radius: 0px 37px 37px 0px;
+  border: none;
+  background-color: transparent;
+}
+/* .sidebar__item-btn:hover {
+  background-color: #E0F0F8;
+} */
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+
+
+
+.accordion-button{
+  background-color: transparent;
+  padding: 0;
+  width: 180px;
+  height: 40px;
+  border: 1px solid #F4F9f8;
+  font-weight: 400;
+  /* color: #333; */
+  color: var(--primary);
+  border: none;
+}
+.accordion-button::after{
+  transform: rotate(-90deg);
+}
+.accordion-button:focus{
+  box-shadow: none;
+  border: none;
+}
+.accordion-item{
+  border: none;
+  width: 180px;
+  background-color: transparent;
+}
+
+
+.accordion-body{
+  padding: 0;
+}
+.accordion-body__list {
+  padding-left: 48px;
+  list-style: none;
+}
+.accordion-body__list li{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-top: 15px;
+  color: var(--primary);
+}
+.accardion-body-item::before{
+  content: "";
+  width: 10px;
+  height: 2px;
+  background-color: #0768B5;
+  margin-right: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.accardion-body-item:hover::before {
+  width: 20px;
+}
+
+.accordion:hover {
+  background-color: transparent !important;
+}
+.sidebar-country-list {
+  list-style: none;
+}
+.sidebar-country-list li {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  /* color: #072D4B; */
+  color: var(--primary);
+}
+.sidebar-country-list li::before {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background-color: #0768B5;
+  margin-right: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.sidebar-country-list li:hover::before {
+  width: 20px;
+}
+link {
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+.active-link {
+  background: rgba(47, 159, 248, 0.1);
+  border-radius: 0px 37px 37px 0px;
+  display: inline-block;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.active-link .sidebar__icon path{
+  stroke: #2F9FF8;
+}
+.sidebar__icon path {
+  stroke: var(--sidebar-icon);
+}
+.active-link p{
+  color: #2F9FF8;
+}
+.active-link::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  /* margin-right: 15px; */
+  position: absolute;
+  left: 15px;
+  display: inline-block;
+  background-color: #2F9FF8;
+}
+.accordion-button {
+  height:24px !important;
+}
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+}
+
+@media screen and (max-width:790px){
+  .sidebar {
+    display: none;
+  }
+}

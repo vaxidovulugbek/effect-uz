@@ -1,0 +1,176 @@
+.yangiliklar {
+  background: var(--news-bg);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 15px 18px 43px 73px;
+  margin-bottom: 60px;
+}
+.yangiliklar__c {
+  padding: 20px 0 20px 20px;
+  border-left:1px solid #C7C8CA;
+  border-bottom: 1px solid #C7C8CA;
+  position: relative;
+}
+.yangiliklar__c-time {
+  position: absolute;
+  left: -6%;
+  top: 40%;
+  color: #C6C6C6;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+}
+.yangiliklar__c-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.yangiliklar__c-content span {
+  position: relative;
+  right: 8px;
+}
+.yangiliklar__c-svg1 {
+  position: absolute;
+  left: 30px;
+  z-index: 2;
+}
+.yangiliklar__c-svg2 {
+  position: absolute;
+  left: 30px;
+  z-index: 1;
+}
+.yangiliklar__content {
+  background: #fff;
+  border-radius: 4px;
+  padding: 11px 14px;
+}
+.yangiliklar__content:hover {
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.15);
+}
+.yangiliklar__content:hover .yangiliklar__info-text{
+  color: #0768B5;
+}
+.yangiliklar__content:hover .yangiliklar__c-time {
+  color: #999;
+}
+.yangiliklar__content:hover .yangiliklar__c-svg2 {
+  z-index: 3;
+}
+.yangiliklar__img {
+  border-radius: 4px;
+  width: 134px;
+  height: 132px;
+  margin-right: 25px;
+  object-fit: cover;
+}
+.yangiliklar__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.yangiliklar__info p {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 24px;
+  margin-top: 27px;
+}
+.yangiliklar__f {
+  color: #072D4B;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  opacity: 0.4;
+}
+.yangiliklar__f-l span {
+  margin-left: 3px;
+}
+.yangiliklar__date {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+.yangiliklar__date::before {
+  content: "";
+  width: 48%;
+  height: 2px;
+  background-color: #0768B5;
+  display: inline-block;
+  margin-right: 6px;
+}
+.yangiliklar__date::after {
+  content: "";
+  width: 48%;
+  height: 2px;
+  background-color: #0768B5;
+  display: inline-block;
+  margin-left: 6px;
+}
+.reload-btn {
+  padding: 10px 30px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  background-color: transparent;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  margin-top: 40px;
+  transition: all 0.4s;
+}
+.reload-btn:hover {
+  color: #fff;
+  background-color: #072D4B;
+}
+.yangiliklar-name {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+
+/* START RESPONSIVE */
+@media screen and (max-width:790px){
+  .yangiliklar-aside {
+    display: none;
+  }
+}
+@media screen and (max-width:520px){
+  .yangiliklar-name {
+    text-align: center;
+  }
+  .yangiliklar {
+    padding: 16px 0;
+  }
+  .yangiliklar__c {
+    border: none;
+    padding: 0;
+  }
+  .yangiliklar__c-time {
+    display: none;
+  }
+  .yangiliklar__date {
+    padding: 0 14px;
+  }
+  .yangiliklar__img {
+    width: 86px;
+    height: 84px;
+    margin-right: 16px;
+  }
+  .yangiliklar__info p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .reload-btn {
+    margin-top: 24px;
+  }
+}

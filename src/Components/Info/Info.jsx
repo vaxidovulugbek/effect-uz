@@ -6,6 +6,8 @@ import parse from 'html-react-parser';
 import './Info.css'
 import GET from '../../API/GET'
 import POST from '../../API/POST'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Info() {
   let location = useLocation()
   let location1 = location.pathname.split('/').at(-1)
@@ -23,13 +25,10 @@ function Info() {
     fetchData();
   }, []);
 
-  // console.log(newsLocRes);
-
   return (
     <div className='d-flex justify-content-between'>
      {
        newsLocRes.map((item,i) => {
-         console.log(item);
         if(+location1 === item.id) {
           return  <div className='info'>
          <h2 className='info__title'>{item.title_oz}</h2>
@@ -37,11 +36,11 @@ function Info() {
            <button>{item.category_id}</button>
          </div>
          <img className='info__img' src={item.default_img} alt="info-news" />
-         {/* <p className='info__text'>{parse(`${item.description_oz}`)}</p> */}
+         <p className='info__text'>{parse(`${item.description_oz}`)}</p>
 
          <div className='info__n'>
            <div className='info__n__rankings'>
-             <NavLink to="muxbir"><span className='info__n-title'>{item.user}</span></NavLink>
+            <NavLink to={`/main/muxbir/${item.id}`}><span className='info__n-title'>{item.user}</span></NavLink>
              <div className='info__n-main d-flex align-items-center'>
                <div className='d-flex align-items-center'>
                  <p className='info__bottom-text'>Yangilikga baho bering</p>
@@ -78,21 +77,25 @@ function Info() {
                <span className='info__bottom-link'>https://effect.uz/posts/1548</span>
                <span className='info__bottom-hr'></span>
 
-              {/* <script type="text/javascript" >
-              (function(m,e,t,r,i,k,a){m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
-              m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+             
 
-              ym(89239351, "init", {
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true,
-                    ecommerce:"dataLayer"
-              });
-            </script> */}
-
-               <span className='info__bottom-copy' onClick={() => navigator.clipboard.writeText('https://effect.uz/posts/1548')}>Nusxa olish</span>
+               <span className='info__bottom-copy'
+                onClick={() => {
+                  return (
+                    navigator.clipboard.writeText("https://effect.uz/posts/1548"),
+                    toast.info("Nusxalandi", {
+                      position: "top-right",
+                      autoClose: 1000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    })
+                  )
+                }}>
+                <ToastContainer />
+                Nusxa olish</span>
              </button>
            </div>
          </div>
@@ -113,7 +116,7 @@ function Info() {
          <div className='comments'>
            <div className='comments__top'>
              <div className='comments__top-text'>Barcha izohlar (<span>0.2</span>)</div>
-             <button>
+             <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                <circle cx="11.9683" cy="11.9683" r="11.9683" transform="rotate(-90 11.9683 11.9683)" fill="#2F9FF8"/>
                <line x1="16.0488" y1="13.1651" x2="12.567" y2="9.68335" stroke="white" stroke-linecap="round"/>
@@ -121,33 +124,37 @@ function Info() {
              </svg>
              </button>
            </div>
-           <div className='comments__info'>
-             <div className='comments__info-l'>
-               <button>
-                 <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <path d="M6.8762 10.896C7.02043 10.896 7.14499 10.8463 7.24989 10.747C7.35478 10.6477 7.40723 10.5298 7.40723 10.3932V7.004H10.9081C11.0523 7.004 11.1769 6.95434 11.2818 6.85503C11.3867 6.75571 11.4391 6.63777 11.4391 6.50121V5.27216C11.4391 5.1356 11.3867 5.01766 11.2818 4.91834C11.1769 4.81903 11.0523 4.76937 10.9081 4.76937H7.40723V1.39879C7.40723 1.26223 7.35478 1.14429 7.24989 1.04497C7.14499 0.945655 7.02043 0.895996 6.8762 0.895996H5.38144C5.23721 0.895996 5.11265 0.945655 5.00775 1.04497C4.90286 1.14429 4.85041 1.26223 4.85041 1.39879V4.76937H1.32986C1.18563 4.76937 1.06107 4.81903 0.956171 4.91834C0.851276 5.01766 0.798828 5.1356 0.798828 5.27216V6.50121C0.798828 6.63777 0.851276 6.75571 0.956171 6.85503C1.06107 6.95434 1.18563 7.004 1.32986 7.004H4.85041V10.3932C4.85041 10.5298 4.90286 10.6477 5.00775 10.747C5.11265 10.8463 5.23721 10.896 5.38144 10.896H6.8762Z" fill="#C5C6EF"/>
-                 </svg>
-               </button>
-               <span>12</span>
-               <button>
-                 <svg width="11" height="3" viewBox="0 0 11 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-                   <path d="M9.96653 2.66C10.1823 2.66 10.3686 2.60445 10.5255 2.49334C10.6824 2.38223 10.7609 2.25028 10.7609 2.0975V0.722504C10.7609 0.569726 10.6824 0.437781 10.5255 0.32667C10.3686 0.215559 10.1823 0.160004 9.96653 0.160004H0.993549C0.777805 0.160004 0.59148 0.215559 0.434576 0.32667C0.277671 0.437781 0.199219 0.569726 0.199219 0.722504V2.0975C0.199219 2.25028 0.277671 2.38223 0.434576 2.49334C0.59148 2.60445 0.777805 2.66 0.993549 2.66H9.96653Z" fill="#C5C6EF"/>
-                 </svg>
-               </button>
-             </div>
+           <div className='collapse' id="collapseExample">
+              <div class="card card-body ">
+                <div className='comments__info'>
+                <div className='comments__info-l'>
+                <button>
+                  <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.8762 10.896C7.02043 10.896 7.14499 10.8463 7.24989 10.747C7.35478 10.6477 7.40723 10.5298 7.40723 10.3932V7.004H10.9081C11.0523 7.004 11.1769 6.95434 11.2818 6.85503C11.3867 6.75571 11.4391 6.63777 11.4391 6.50121V5.27216C11.4391 5.1356 11.3867 5.01766 11.2818 4.91834C11.1769 4.81903 11.0523 4.76937 10.9081 4.76937H7.40723V1.39879C7.40723 1.26223 7.35478 1.14429 7.24989 1.04497C7.14499 0.945655 7.02043 0.895996 6.8762 0.895996H5.38144C5.23721 0.895996 5.11265 0.945655 5.00775 1.04497C4.90286 1.14429 4.85041 1.26223 4.85041 1.39879V4.76937H1.32986C1.18563 4.76937 1.06107 4.81903 0.956171 4.91834C0.851276 5.01766 0.798828 5.1356 0.798828 5.27216V6.50121C0.798828 6.63777 0.851276 6.75571 0.956171 6.85503C1.06107 6.95434 1.18563 7.004 1.32986 7.004H4.85041V10.3932C4.85041 10.5298 4.90286 10.6477 5.00775 10.747C5.11265 10.8463 5.23721 10.896 5.38144 10.896H6.8762Z" fill="#C5C6EF"/>
+                  </svg>
+                </button>
+                <span>12</span>
+                <button>
+                  <svg width="11" height="3" viewBox="0 0 11 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.96653 2.66C10.1823 2.66 10.3686 2.60445 10.5255 2.49334C10.6824 2.38223 10.7609 2.25028 10.7609 2.0975V0.722504C10.7609 0.569726 10.6824 0.437781 10.5255 0.32667C10.3686 0.215559 10.1823 0.160004 9.96653 0.160004H0.993549C0.777805 0.160004 0.59148 0.215559 0.434576 0.32667C0.277671 0.437781 0.199219 0.569726 0.199219 0.722504V2.0975C0.199219 2.25028 0.277671 2.38223 0.434576 2.49334C0.59148 2.60445 0.777805 2.66 0.993549 2.66H9.96653Z" fill="#C5C6EF"/>
+                  </svg>
+                </button>
+              </div>
 
-             <div className='comments__info-r'>
-               <div className='comments__info-top d-flex align-items-center'>
-                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                 </svg>
-                 <span className='comments__info-top-name'>amyrobson</span>
-                 <div className='comments__info-avatar'><span>2</span> kun avval</div>
-               </div>
-               <p className='comments__info-text'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
-             </div>
-           </div>
+              <div className='comments__info-r'>
+                <div className='comments__info-top d-flex align-items-center'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                  <span className='comments__info-top-name'>amyrobson</span>
+                  <div className='comments__info-avatar'><span>2</span> kun avval</div>
+                </div>
+                <p className='comments__info-text'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
+              </div>
+                </div>
+            </div>
+              </div>
          </div>
      </div>
         }

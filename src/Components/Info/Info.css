@@ -241,12 +241,18 @@
   background-color: transparent;
 }
 .comments__info {
-  display: flex;
+  display: flex !important;
   align-items: center;
   padding: 24px;
   border-radius: 8px;
-  margin-top: 20px;
   background: #fff;
+}
+.card {
+  margin-top: 20px !important;
+  border: none !important;
+}
+.card-body {
+  padding: 0 !important;
 }
 .comments__info-l {
   display: flex;

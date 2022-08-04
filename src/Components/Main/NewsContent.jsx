@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom';
 import newsimg from '../../Assets/imgs/newsimg.png';
+import parse from 'html-react-parser';
 import News from './News';
 
 import GET from '../../API/GET'
@@ -13,10 +14,11 @@ function NewsContent({showSearch,value}) {
   const [data, setData] = useState([]);
   const [newsFour, setNewsFour] = useState([]);
   const [newsRest, setNewsRest] = useState([]);
-
+  const [newsContent ,setNewsContent] = useState([])
   const params = {
     count: 4
   }
+
 
   const fetchData = async () => {
     try {
@@ -26,6 +28,7 @@ function NewsContent({showSearch,value}) {
       
       setData(category.data);
       setNewsFour(newsEnd.data.items.slice(0, params.count))
+      setNewsContent(newsEnd.data.items.slice(0, 1))
       setNewsRest(newsRest.data.items)
     } catch (error) {}
   };
@@ -72,35 +75,41 @@ function NewsContent({showSearch,value}) {
           })
         }
       <div className={showSearch ? 'news__content' : "show-news-content"}>
-        <div className='news__content-info'>
-          <div className='news__content-img-container'><img className='news__content-img' src={newsimg} alt="news" /></div>
-          <div className='d-flex justify-content-between align-items-center'>
-            <div className='d-flex align-items-center mt-2'>
-              <svg className='news__content-icon news__svg' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.8">
-                <path d="M8.00004 14.6667C11.6819 14.6667 14.6667 11.6819 14.6667 8.00004C14.6667 4.31814 11.6819 1.33337 8.00004 1.33337C4.31814 1.33337 1.33337 4.31814 1.33337 8.00004C1.33337 11.6819 4.31814 14.6667 8.00004 14.6667Z" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14.6667 8H12" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4.00004 8H1.33337" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 4.00004V1.33337" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 14.6667V12" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
-              <h3 className='news__content-subtitle'>Texnologiya</h3>
+        {
+          newsContent.map((item,i) => {
+            return <div className='news__content-info'>
+            <div className='news__content-img-container'><img className='news__content-img' src={item.default_img} alt="news" /></div>
+            <div className='d-flex justify-content-between align-items-center'>
+              <div className='d-flex align-items-center mt-2'>
+                <svg className='news__content-icon news__svg' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.8">
+                  <path d="M8.00004 14.6667C11.6819 14.6667 14.6667 11.6819 14.6667 8.00004C14.6667 4.31814 11.6819 1.33337 8.00004 1.33337C4.31814 1.33337 1.33337 4.31814 1.33337 8.00004C1.33337 11.6819 4.31814 14.6667 8.00004 14.6667Z" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14.6667 8H12" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.00004 8H1.33337" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 4.00004V1.33337" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 14.6667V12" stroke="#072D4B" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+                <h3 className='news__content-subtitle'>{item.category_id}</h3>
+              </div>
+              <div className='d-flex align-items-center'>
+                <svg className='news__svg' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.6">
+                  <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 4.66663V7.99996L10 9.99996" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+                <p className='news__content-infotime'><span></span><span className='news__content-infotext'></span><span>{item.created_date}</span></p>
+              </div>
+  
             </div>
-            <div className='d-flex align-items-center'>
-              <svg className='news__svg' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.6">
-                <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 4.66663V7.99996L10 9.99996" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
-              <p className='news__content-infotime'><span>Bugun</span><span className='news__content-infotext'></span><span>15:45</span></p>
-            </div>
-
-          </div>
-          <h3 className='news__content-title'>Samsung Galaxy F22 launched in India: Price, features, other details</h3>
-          <p className='news__content-text'>Samsung Galaxy F22 has been launched in India. The new smartphone has been priced in the mid-range segment.</p>
-         </div>
+            <NavLink to={`main/${item.id}`}>
+               <h3 className='news__content-title'>{item.title_uz}</h3>
+            </NavLink>
+            <p className='news__content-text'>{parse(`${item.description_oz}`)}</p>
+           </div>
+          })
+        }
 
         <div className='news__content-cards'>
             {

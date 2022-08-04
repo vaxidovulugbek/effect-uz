@@ -18,7 +18,7 @@ function Sidebar() {
     try {
       const category = await GET.category();
       const provence = await GET.provence();
-      console.log(provence.data);
+      // console.log(provence.data);
 
       setData(category.data);
       setRegion(provence.data);
@@ -30,7 +30,7 @@ function Sidebar() {
 
   return (
     <div className='sidebar'>
-      <a className='sidebar__logo-link' href="#"><img className='sidebar__logo' src={logo} alt="logo" /></a>
+      <a className='sidebar__logo-link' href="/"><img className='sidebar__logo' src={logo} alt="logo" /></a>
       <div className='sidebar__content'>
         <NavLink className={({isActive}) => isActive ? 'active-link' : 'static-link'} to="/">
           <div className='sidebar__item'>

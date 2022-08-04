@@ -25,6 +25,7 @@ body {
   --hover-btn: #202C36;
   --section-bg: #202C36;
   --aside-bg: #1e2732;
+  --yangiliklar-hr: #fff;
 }
 :root {
   --body-color: #F4F9F8;
@@ -36,6 +37,7 @@ body {
   --hover-btn: #fff;
   --section-bg: #F4F9F8;
   --aside-bg: #fff;
+  --yangiliklar-hr:#0768B5;
 }
 
 code {

@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Muxbir.css'
+import GET from '../../API/GET'
+import { useLocation, useParams } from 'react-router-dom'
 function Muxbir() {
+  let location = useLocation()
+  let location1 = location.pathname.split('/').at(-1)
+
+  let [data, setData] = useState([])
+ 
+  const infoUser = async () => {
+    try{
+      const data = await GET.reporter(location1)
+      setData(data.data)
+    }catch(err) {
+      console.log(err)
+      return
+    }
+  }
+
+  useEffect(() => {
+    infoUser()
+  }, [])
+
+  // console.log(data);
+
   return (
     <div className='muxbir'>
       <div className='muxbir__content'>

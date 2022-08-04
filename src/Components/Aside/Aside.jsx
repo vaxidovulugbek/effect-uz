@@ -12,7 +12,6 @@ import POST from '../../API/POST'
 // import '../../i18n';
 
 function Aside() {
-  const AsideNewsArr = [1,2,3,4,5,6,7,8]
   const [data, setData] = useState([]);
   const [newsFour, setNewsFour] = useState([]);
   const [newsRest, setNewsRest] = useState([]);

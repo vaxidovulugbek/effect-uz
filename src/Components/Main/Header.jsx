@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from "axios";
 import { Route, Routes } from 'react-router-dom'
 import AsideHeader from '../Aside/AsideHeader'
 import AsideLinks from '../Aside/AsideLinks'
@@ -34,9 +35,19 @@ function Header({setShowSearch,setValue}) {
     }
   }
 
-  // newsSearch.filter(el => { 
-  //   return el.title_uz.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-  // })
+  // START VALYUTA PART
+  const [post, setPost] = useState([{
+    ONE:1
+  }]);
+  useEffect(() => {
+    axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
+      .then((response) => {
+      setPost(response.data);
+    });
+    // if (!post) return null;
+    console.log(post);
+  }, []);
+
 
   return (
     <>
@@ -48,7 +59,7 @@ function Header({setShowSearch,setValue}) {
             <path d="M15.75 15.75L12.4875 12.4875" stroke="#072D4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <a className='sidebar__respons-link' href="#"><img className='sidebar__respons-logo' src={logo} alt="logo" /></a>
+        <a className='sidebar__respons-link' href="/"><img className='sidebar__respons-logo' src={logo} alt="logo" /></a>
         <form className={ResSearch ? `header__form` : "header__res-top"}  >
           <input className='header__search' type="search" placeholder="Sayt bo'ylab izlash" onChange={(e) => searchHendler(e)} />
           <button className='header__search-btn'>
@@ -111,12 +122,18 @@ function Header({setShowSearch,setValue}) {
         <Routes>
           <Route path='audio-habarlar' element={<AsideHeader />}/>  
        </Routes>
+       <Routes>
+          <Route path='video-habarlar' element={<AsideHeader />}/>  
+       </Routes>
         <div className='aside-muxbir-link'>
             <Routes>
                 <Route path='main:id/muxbir' element={<AsideLinks />}/>  
             </Routes>
         <Routes>
             <Route path='audio-habarlar' element={<AsideLinks />}/>  
+        </Routes>
+        <Routes>
+            <Route path='video-habarlar' element={<AsideLinks />}/>  
         </Routes>
         </div>
       </div>

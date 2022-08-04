@@ -11,6 +11,7 @@ import NewsContent from './NewsContent';
 import Audios from '../../Components/Audios/Audios';
 import Muxbir from '../Muxbir/Muxbir';
 import Aside from '../Aside/Aside';
+import VideoHabarlar from '../VideoHabarlar/VideoHabarlar';
 
 function Main() {
   let [showSearch,setShowSearch] = useState(true)
@@ -26,7 +27,8 @@ function Main() {
           <Route path='main/:id' element={<Info />}/>
           <Route path='main/:id' element={<Habarlar />}/>
           <Route path='audio-habarlar' element={<Audios />}/>
-          <Route path='main:id/muxbir' element={<Muxbir />}/>
+          <Route path='video-habarlar' element={<VideoHabarlar />}/>
+          <Route path='main/muxbir/:id' element={<Muxbir />}/>
 
           {/* <PhotoNews />
           <VideoNews />

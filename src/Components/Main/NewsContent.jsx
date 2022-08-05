@@ -110,7 +110,6 @@ function NewsContent({showSearch,value}) {
             <NavLink to={`main/${item.id}`}>
                <h3 className='news__content-title'>{i18n.language === "uz" ? parse(item.title_uz).substring(0,110) : i18n.language === "oz" ? parse(item.title_oz).substring(0,110) : parse(item.title_uz).substring(0,110)}</h3>
             </NavLink>
-            <p className='news__content-text'>{parse(`${item.description_oz}`)}</p>
            </div>
           })
         }

@@ -14,7 +14,7 @@ function AsideHeader() {
         i18n.changeLanguage(lang)
       case 'uz':
         i18n.changeLanguage(lang)
-      case 'eng':
+      case 'oz':
         i18n.changeLanguage(lang)
     }
   }, [lang])
@@ -45,9 +45,9 @@ function AsideHeader() {
           </button>
         </div>
         <select className='aside__lang' name="lang" id="lang" onChange={(e) => setLang(e.target.value)}> 
-          <option className='aside__options' value="uz" >uz</option>
-          <option className='aside__options' value="eng">eng</option>
-          <option className='aside__options' value="ru">Rus</option>
+          <option className='aside__options' value="uz" >Uz</option>
+          <option className='aside__options' value="oz">Oz</option>
+          <option className='aside__options' value="ru">Ru</option>
         </select>
       </div>
         {/* <div className='aside__boxes d-flex align-items-center'>

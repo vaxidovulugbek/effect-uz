@@ -12,6 +12,7 @@ import Audios from '../../Components/Audios/Audios';
 import Muxbir from '../Muxbir/Muxbir';
 import Aside from '../Aside/Aside';
 import VideoHabarlar from '../VideoHabarlar/VideoHabarlar';
+import Footer from '../Footer/Footer';
 
 function Main() {
   let [showSearch,setShowSearch] = useState(true)
@@ -29,7 +30,7 @@ function Main() {
           <Route path='audio-habarlar' element={<Audios />}/>
           <Route path='video-habarlar' element={<VideoHabarlar />}/>
           <Route path='main/muxbir/:id' element={<Muxbir />}/>
-
+          {/* <Route path='/yangiliklar-lentasi' element={<Footer />}/> */}
           {/* <PhotoNews />
           <VideoNews />
         <DownloadApp /> */}

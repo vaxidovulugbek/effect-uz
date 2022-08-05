@@ -4,9 +4,10 @@ import AsideHeader from '../Aside/AsideHeader'
 import './Yangiliklar.css'
 import GET from '../../API/GET'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Footer from '../Footer/Footer'
 function Yangiliklar() {
-  let cardArray = [1,2,3,4,5]
-
+  const {t,i18n} = useTranslation()
   const [newsAll, setnewsAll] = useState([])
   const newsall = async () => {
     try {
@@ -31,11 +32,12 @@ function Yangiliklar() {
   useEffect(() => {
     newsall();
   }, []);
-  // console.log(newsAll);
+ 
   return (
-    <div className='d-flex'>
+  <>
+      <div className='d-flex'>
       <div>
-        <p className='yangiliklar-name'>Yangiliklar lentasi</p>
+        <p className='yangiliklar-name'>{t("yangilikalar-lentasi")}</p>
         <div className='yangiliklar'>
         <div className='yangiliklar__date'>
           <span>22.07.2022</span>
@@ -88,7 +90,7 @@ function Yangiliklar() {
                     </div>
                     <img className='yangiliklar__img' src={item.default_img} alt="yangiliklar" />
                     <div className='yangiliklar__info'>
-                    <p className='yangiliklar__info-text'>{item.title_uz}</p>
+                    <p className='yangiliklar__info-text'>  {i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ? item.title_oz : item.title_uz}</p>
                     <div className='yangiliklar__f d-flex align-items-center justify-content-between'>
                       <span>{item.category_id}</span>
                       <div className='yangiliklar__f-l d-flex align-items-center'>
@@ -114,6 +116,8 @@ function Yangiliklar() {
        <Aside/>  
      </div>
     </div>
+    {/* <Footer /> */}
+  </>
   )
 }
 

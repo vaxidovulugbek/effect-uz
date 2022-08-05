@@ -90,3 +90,58 @@
   line-height: 30px;
   color: #0768B5;
 }
+@media screen and (max-width:960px) {
+  .muxbir {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px 0px 0;
+  }
+  .muxbir__content {
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+}
+@media screen and (max-width:520px) {
+  .muxbir__info {
+    width: 100%;
+    padding: 20px;
+  }
+  .muxbir__info-text {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .muxbir__info-co {
+    margin-top: 40px;
+  }
+  .muxbir__info-items {
+    margin-left: 20px;
+  }
+  .muxbir__info-name {
+    margin-right: 6px;
+    font-size: 13px;
+  }
+  .muxbir__info-num {
+    font-size: 13px;
+  }
+  .muxbir__title {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width:380px) {
+  .muxbir__info-co {
+    margin-top: 30px;
+  }
+  .muxbir__info-items {
+    margin-left: 16px;
+  }
+  .muxbir__info-name {
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .muxbir__info-num {
+    font-size: 12px;
+  }
+  .muxbir__info-text {
+    font-size: 15px;
+  }
+}

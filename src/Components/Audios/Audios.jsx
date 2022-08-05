@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Aside from '../Aside/Aside'
 import './Audios.css'
 import GET from '../../API/GET'
+import { useTranslation } from 'react-i18next'
 function Audios() {
   let audiosarr = [1,2,3,4,5,6,7]
+  const {t,i18n} = useTranslation()
   let [voise,setVoisec] = useState([])
   const fetchData = async () => {
     try {
@@ -26,7 +28,7 @@ function Audios() {
   return (
     <div className='d-flex'>
      <div className='audios'>
-      <p className='audios__name'>Audio Xabarlar</p>
+      <p className='audios__name'>{t("audio-habarlar")}</p>
       <div className='audios__content'>
         <h2 className='audios__title'>Leak: Samsung to announce the Z Fold 3 and Galaxy Watch 4 in August</h2>
         <div className='audios__bottom d-flex align-items-center justify-content-between'>

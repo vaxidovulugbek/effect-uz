@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './VideoNews.css'
 import soldat from '../../Assets/imgs/soldat.png'
 import football from '../../Assets/imgs/football.png'
 import { useTranslation } from 'react-i18next'
+import GET from '../../API/GET'
 function VideoNews() {
-  const {t} = useTranslation()
+  const {t,i18n} = useTranslation()
   let videoArr = [1,2,3,4,5,6,7,8,9]
+  let [video,setVideo] = useState([])
+  const fetchData = async () => {
+    try {
+      const voisec = await GET.videos();
+      setVideo(voisec.data);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className='videonews'>
       <h2 className='videonews__title'>{t("video-yangiliklar")}</h2>
@@ -17,9 +29,9 @@ function VideoNews() {
         <div className='videonews__ci'>
           <div className='videonews__info'> 
           {
-            videoArr.map((item,i) => {
+            video.map((item,i) => {
               return  <div className='videonews__info-item d-flex'>
-              <img className='videonews__video d-flex' src={football} alt="video-news" />
+              <img className='videonews__video d-flex' src={item.default_img} alt="video-news" />
               <div className='d-flex flex-column'>
                 <div className='videonews__info-date d-flex align-items-center'>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,9 +45,9 @@ function VideoNews() {
                     </clipPath>
                     </defs>
                   </svg>
-                  <span>05.11.2021</span>
+                  <span>{item.created_date}</span>
                 </div>
-                <h4 className='videonews__info-title'>Kaan Terzio‘g‘lu: “O‘zbekiston kelajagi – raqamli iqtisodiyot...</h4>
+                <h4 className='videonews__info-title'>{i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ? item.title_oz : item.title_uz}</h4>
               </div>
             </div>
             })

@@ -21,8 +21,8 @@ const headers = {
 
 const POST = {
   login: (params) => axios.post(LOGIN_URL, params),
-  newsFour: (params) => axios.post(`${NEWS_END}`, params, headers),
-  comment: (params) => axios.post(`${COMMENT_URL}`, params, headers),
+  newsFour: (params) => axios.post(`${NEWS_END}`,params, headers),
+  comment: (params) => axios.post(`${COMMENT_URL}`,params, headers),
 }
 
 export default POST

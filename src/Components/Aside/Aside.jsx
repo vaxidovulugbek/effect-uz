@@ -23,11 +23,11 @@ function Aside() {
   const fetchData = async () => {
     try {
       // const category = await GET.category();
-      const newsEnd = await POST.newsFour(params)
+      const newsEnd = await POST.top10news(params)
       // const newsRest = await GET.news()
       
       // setData(category.data);
-      setNewsFour(newsEnd.data.items.slice(0, params.count))
+      setNewsFour(newsEnd.data.items)
       // setNewsRest(newsRest.data.items)
     } catch (error) {}
   };
@@ -93,11 +93,11 @@ function Aside() {
             {/* <p>Qashqadaryo, Qarshi</p> */}
             <p>Uzbekistan / {weatherName}</p>
             <div className='d-flex align-items-center'>
-              <button onClick={leftClickedHandler}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle opacity="0.2" r="12" transform="matrix(-1 0 0 1 12 12)" fill="#2F9FF8"/>
-                  <line x1="0.5" y1="-0.5" x2="5.4397" y2="-0.5" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 13.2001 16.8)" stroke="white" stroke-linecap="round"/>
-                  <line x1="13.2001" y1="9.10701" x2="9.70718" y2="12.5999" stroke="white" stroke-linecap="round"/>
+              <button className='aside-l-btn' onClick={leftClickedHandler}>
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <circle cx="12" cy="12.1492" r="12" transform="rotate(-180 12 12.1492)" fill="#2F9FF8"/>
+                   <line x1="13.2001" y1="8.05623" x2="9.70718" y2="11.5491" stroke="white" stroke-linecap="round"/>
+                   <line x1="0.5" y1="-0.5" x2="5.4397" y2="-0.5" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 13.2001 15.7493)" stroke="white" stroke-linecap="round"/>
                 </svg>
               </button>
               <button onClick={rightClickedHandler}>

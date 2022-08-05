@@ -4,11 +4,11 @@ import { initReactI18next } from "react-i18next";
 
 import transUzb from './Lang/uz.json'
 import transRus from './Lang/ru.json'
-import transEng from './Lang/eng.json'
+import transEng from './Lang/oz.json'
 
 
 const resources = {
-  eng: {
+  oz: {
     translation: transEng
   },
   uz: {
@@ -25,8 +25,8 @@ i18n
   .init({
     resources,
     lng: "uz",
-    fallbackLng: "eng",
-    fallbackLng: "rus",
+    fallbackLng: "oz",
+    fallbackLng: "ru",
 
     interpolation: {
       escapeValue: false

@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { Route, Routes } from 'react-router-dom'
+import { NavLink, Route, Routes } from 'react-router-dom'
 import AsideHeader from '../Aside/AsideHeader'
 import AsideLinks from '../Aside/AsideLinks'
 import logo from '../../Assets/imgs/logo.svg'
 
 import GET from '../../API/GET'
 import POST from '../../API/POST'
+import { useTranslation } from 'react-i18next';
 
 function Header({setShowSearch,setValue}) {
-
-  // const [newsSearch, setNewsSearch] = useState([]);
-  // const fetchData = async () => {
-  //   try {
-  //     const newsRest = await GET.news()
-
-  //     setNewsSearch(newsRest.data.items)
-  //   } catch (error) {}
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const {t,i18n} = useTranslation()
 
 // START SEARCH PART
   let [ResSearch,setResSearch] = useState(true)
@@ -48,7 +38,6 @@ function Header({setShowSearch,setValue}) {
     console.log(post);
   }, []);
 
-
   return (
     <>
      <div className='hc d-flex align-items-center justify-content-between'>
@@ -61,7 +50,7 @@ function Header({setShowSearch,setValue}) {
         </button>
         <a className='sidebar__respons-link' href="/"><img className='sidebar__respons-logo' src={logo} alt="logo" /></a>
         <form className={ResSearch ? `header__form` : "header__res-top"}  >
-          <input className='header__search' type="search" placeholder="Sayt bo'ylab izlash" onChange={(e) => searchHendler(e)} />
+          <input className='header__search' type="search" placeholder={t('sayt-boylab-izlash')} onChange={(e) => searchHendler(e)} />
           <button className='header__search-btn'>
             <svg className='header__search-icon' width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z" stroke="#072D4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,13 +59,15 @@ function Header({setShowSearch,setValue}) {
           </button>
           <button className='sidebar-respond-close' onClick={() => setResSearch(!ResSearch)} >x</button>
         </form>
+       <NavLink className="respons-menu" to="resmenu">
         <div className='respons-menu'>
-          <button className='respons-menu-btn'>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z" fill="#072D4B"/>
-            </svg>
-          </button>
-        </div>
+            <button className='respons-menu-btn'>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z" fill="#072D4B"/>
+              </svg>
+            </button>
+          </div>
+       </NavLink>
         <div className='header__valuta'>
           <div className='header__valuta-item'>
             <span className='header__valuta-text'>USD = </span>
@@ -112,7 +103,7 @@ function Header({setShowSearch,setValue}) {
       </div>
       <div className='main-yangilik-respons'>
         <Routes>
-            <Route path='main:id' element={<AsideHeader />}/>  
+            <Route path='main/:id' element={<AsideHeader />}/>  
         </Routes>
       </div>
       <div className='aside-muxbir flex-column'>

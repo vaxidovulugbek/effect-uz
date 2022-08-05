@@ -127,6 +127,10 @@
   color: #fff;
   background-color: #2F9FF8;
 }
+.aside-l-btn {
+  position: relative;
+  top: 1px;
+}
 
 .aside__more-read {
   background: var(--aside-bg);

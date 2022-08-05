@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 import '../../i18n';
 import GET from '../../API/GET'
 import POST from '../../API/POST'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 function News() {
-  let newsArrCategory = ["Barchasi","Siyosat","Jamiyat","Sport","Iqtisod","Ilm-Fan","Texnologiya","Turizm"]
-
-  const {t} = useTranslation()
+  const {t,i18n} = useTranslation()
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
@@ -20,15 +20,44 @@ function News() {
     fetchData();
   }, []);
 
+  // CARUSEL PART 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 2000, min: 2000 },
+      items: 4
+    },
+    desktop: {
+      breakpoint: { max: 2000, min: 824 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 824, min: 264 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 264, min: 0 },
+      items: 1
+    }
+  };
+
   return (
     <div className='news'>
       <h2 className='news__title'>{t('title')}</h2>
-      <ul className='news__list'>
+        <Carousel className='news__list' responsive={responsive}>
         {
-          data.map((item,index) => {
-            return <li className='news__item' key={index+100}>
-            <button className='news__btn'>{item.name_uz}</button>
-          </li>
+          data.map((item,index) => { 
+            return <button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ? item.name_oz : item.name_uz}</button>
+                })
+        }
+        </Carousel>
+
+      <ul className='news__list-respond'>
+        {
+          data.map((item,index) => { 
+            return <li className=''>
+              <button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ? item.name_oz : item.name_uz}</button>
+            </li>
           })
         }
       </ul>

@@ -198,9 +198,79 @@ a {
 .accordion-button:not(.collapsed) {
   background-color: transparent !important;
 }
+.respons-navbar {
+  display: none;
+  margin-top: 70px;
+  background: var(--news-bg);
+  padding: 16px 30px;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+.respons-navbar__name {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+.respons-navbar__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.respons-navbar__item {
+  margin-bottom: 10px;
+}
+.respons-navbar__link {
+  color: var(--primary);
+}
+
+.res-menubar {
+  width: 100%;
+  padding: 17px 26px 14px 26px;
+  margin-top: 1000px;
+  position: fixed;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px 10px 0px 0px;
+}
+.res-menubar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.res-menubar__item p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #666;
+}
+.active .res-menubar__item {
+  background: #fff !important;
+} 
+.active .res-menubar__item p{
+  color: #2F9FF8;
+}
+.active .res-menubar__item svg path{
+  stroke: #2F9FF8;
+}
 
 @media screen and (max-width:790px){
   .sidebar {
     display: none;
   }
+  .respons-navbar {
+    display: block;
+  }
 }
+@media screen and (max-width:520px){
+  .res-menubar {
+    display: flex;
+  }
+}
+

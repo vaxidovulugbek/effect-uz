@@ -7,9 +7,10 @@ import News from './News';
 
 import GET from '../../API/GET'
 import POST from '../../API/POST'
+import Footer from '../Footer/Footer';
 
 function NewsContent({showSearch,value}) {
-  const {t} = useTranslation()
+  const {t,i18n} = useTranslation()
 
   const [data, setData] = useState([]);
   const [newsFour, setNewsFour] = useState([]);
@@ -41,7 +42,7 @@ function NewsContent({showSearch,value}) {
     return el.title_uz.toLocaleLowerCase().includes(value.toLocaleLowerCase())
   })
 
-  // console.log(showSearch);
+  // console.log(data);
 
   return (
     <>
@@ -64,7 +65,10 @@ function NewsContent({showSearch,value}) {
                       </svg>
                       <p>11:45  |  <span>{item.created_date}</span></p>
                     </div>
-                    <h3 className='news__content-cardstitle'>{item.title_oz}</h3>
+                    <h3 className='news__content-cardstitle'>
+                    {/* {i18n.language === "uz" ? parse(item.description_uz) : i18n.language === "rus" ? parse(item.description_ru) : i18n.language === "rus" ? parse(item.description_oz) : parse(item.description_uz)} */}
+                       {i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ? item.title_oz : item.title_uz}
+                      </h3>
                   </div>
                   <div>
                     <img className='news__content-cardsimg' src={item.default_img} alt="card" />
@@ -104,7 +108,7 @@ function NewsContent({showSearch,value}) {
   
             </div>
             <NavLink to={`main/${item.id}`}>
-               <h3 className='news__content-title'>{item.title_uz}</h3>
+               <h3 className='news__content-title'>{i18n.language === "uz" ? parse(item.title_uz).substring(0,110) : i18n.language === "oz" ? parse(item.title_oz).substring(0,110) : parse(item.title_uz).substring(0,110)}</h3>
             </NavLink>
             <p className='news__content-text'>{parse(`${item.description_oz}`)}</p>
            </div>
@@ -130,7 +134,7 @@ function NewsContent({showSearch,value}) {
                       </svg>
                       <p>11:45  |  <span>{item.created_date}</span></p>
                     </div>
-                    <h3 className='news__content-cardstitle'>{item.title_oz}</h3>
+                    <h3 className='news__content-cardstitle'>{i18n.language === "uz" ? parse(item.title_uz) : i18n.language === "oz" ? parse(item.title_oz) : parse(item.title_uz)}</h3>
                   </div>
                   <div>
                     <img className='news__content-cardsimg' src={item.default_img} alt="card" />
@@ -166,7 +170,7 @@ function NewsContent({showSearch,value}) {
                return <Link className='news__info-item' to={`main/${item.id}`}>
               {/* <span className='news__info-category'>{item.category_id}</span> */}
               <div className='news__info-main'>
-                <h4 className='news__info-title'>{item.title_oz}</h4>
+                <h4 className='news__info-title'>{i18n.language === "uz" ? parse(item.title_uz) : i18n.language === "oz" ? parse(item.title_oz) : parse(item.title_uz)}</h4>
                 <div className='news__info-date'>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" >
                     <g opacity="0.4">

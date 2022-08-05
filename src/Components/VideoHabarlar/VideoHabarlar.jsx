@@ -1,54 +1,36 @@
 import { Slider } from '@mui/material'
-import React from 'react'
+import React, {useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import Aside from '../Aside/Aside'
 import './VideoHabarlar.css'
+import GET from '../../API/GET'
 function VideoHabarlar() {
-  let videosarr = [1,2,3,4,5,6,7]
+  const {t,i18n} = useTranslation()
+
+  let [video,setVideo] = useState([])
+  const fetchData = async () => {
+    try {
+      const voisec = await GET.videos();
+      setVideo(voisec.data);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log(video);
   return (
     <div className='d-flex'>
      <div className='videos'>
-      <p className='videos__name'>Video Xabarlar</p>
-      <div className='videos__content'>
-        <h2 className='videos__title'>Leak: Samsung to announce the Z Fold 3 and Galaxy Watch 4 in August</h2>
-        <div className='videos__bottom d-flex align-items-center justify-content-between'>
-          <div className="videos__control d-flex align-items-center">
-            <button className="videos__control-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.8273 12L15.7773 16.95L14.3633 18.364L7.99934 12L14.3633 5.63601L15.7773 7.05001L10.8273 12Z" fill="#072D4B"/>
-              </svg>
-            </button>
-            <button className="videos__control-center">
-              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24.22 15.52L10.9713 24.3525C10.8771 24.4152 10.7678 24.4511 10.6549 24.4565C10.5419 24.4619 10.4297 24.4366 10.33 24.3832C10.2303 24.3298 10.147 24.2504 10.0889 24.1535C10.0308 24.0565 10.0001 23.9456 10 23.8325V6.16752C10.0001 6.05447 10.0308 5.94355 10.0889 5.84658C10.147 5.7496 10.2303 5.67021 10.33 5.61685C10.4297 5.56349 10.5419 5.53816 10.6549 5.54356C10.7678 5.54896 10.8771 5.58489 10.9713 5.64752L24.22 14.48C24.3056 14.5371 24.3758 14.6144 24.4243 14.7051C24.4729 14.7958 24.4983 14.8971 24.4983 15C24.4983 15.1029 24.4729 15.2042 24.4243 15.2949C24.3758 15.3856 24.3056 15.4629 24.22 15.52Z" fill="#072D4B"/>
-              </svg>
-            </button>
-            <button className="videos__control-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M13.1727 12L8.22266 7.04999L9.63666 5.63599L16.0007 12L9.63666 18.364L8.22266 16.95L13.1727 12Z" fill="#072D4B"/>
-              </svg>
-            </button>
-          </div>
-          <div className='videos__cv d-flex align-items-center'>
-            <div className="videos__time d-flex align-items-center"><span>01:25</span> <span className='ms-1 me-1'>/</span> <span>03:38</span></div>
-            <Slider
-              className="videos__time-controller"
-              aria-label="Default"
-              defaultValue={30}
-              color="primary"
-              size="small"
-            />
-          </div>
-          <Slider className="videos__value" defaultValue={50} aria-label="Default" size="small" />
-        </div>
-      </div>
+      <p className='videos__name'>{t("video-habarlar")}</p>
 
       <div className='videos__info'>
         {
-          videosarr.map((item,i)=> {
+          video.map((item,i)=> {
             return <div className='videos__info-item d-flex' key={i} >
-            <img className='videos__info-img' src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/33/f6/60/caption.jpg?w=700&h=500&s=1" alt="news" />
+            <img className='videos__info-img' src={item.default_img} alt="news" />
             <div className='videos__info-c'>
-              <h3 className='videos__info-title'>Playing card effect and box shadow effect. Audio wave chiqib turadi play bo’lganda. Default holatda 1-si play bo’ladi. text color ham o’zgaradi</h3>
+              <h3 className='videos__info-title'>{i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ? item.title_oz : item.title_uz}</h3>
               <div className='d-flex '>
                 <div className='videos__info-w d-flex align-items-center'>
                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,11 +42,10 @@ function VideoHabarlar() {
                     <path d="M6.66732 10H5.33398V11.3333H6.66732V10Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
                     </g>
                  </svg>
-                 <div className='videos__info-time d-flex align-items-center'><span>11:45</span>  <span className='ms-2 me-2'>|</span>  <span>13.07.2022</span></div>
+                 <div className='videos__info-time d-flex align-items-center'><span>11:45</span>  <span className='ms-2 me-2'>|</span>  <span>{item.created_date}</span></div>
                 </div>
                 <div className='d-flex align-items-center'>
-                  <button className='videos__info-btn'>Tech</button>
-                  <button className='videos__info-btn'>Mobile</button>
+                  <button className='videos__info-btn'>{item.category_id}</button>
                 </div>
               </div>
             </div>

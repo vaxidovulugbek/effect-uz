@@ -12,6 +12,8 @@ import Habarlar from './Components/Info/Habarlar';
 import API from './API/API'
 import Muxbir from './Components/Muxbir/Muxbir';
 import AsideHeader from './Components/Aside/AsideHeader';
+import ResponsiveNavbar from './Components/Sidebar/ResponsiveNavbar';
+import ResMenu from './Components/Sidebar/ResMenu';
 
 function App() {
   let [data, setData] = useState([])
@@ -51,10 +53,6 @@ function App() {
              </div>
             </div>
         </div>
-          {/* <PhotoNews />
-          <VideoNews />
-          <DownloadApp /> */}
-          
           <Routes>
             <Route path='/' element={<VideoNews />}/>
           </Routes>
@@ -64,11 +62,12 @@ function App() {
 
           <Routes>
            <Route path='main:id' element={<Habarlar />}/>
+           <Route path='resmenu' element={<ResponsiveNavbar />}/>
          </Routes>
       </div>
-          <Footer />
     </div>
-    
+    <Footer />
+    <ResMenu />
     </>
   );
 }

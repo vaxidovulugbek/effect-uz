@@ -9,7 +9,7 @@ import GET from '../../API/GET'
 import POST from '../../API/POST'
 import { useTranslation } from 'react-i18next';
 
-function Header({setShowSearch,setValue}) {
+function Header({setShowSearch,setValue,setresmenu,resmenu}) {
   const {t,i18n} = useTranslation()
 
 // START SEARCH PART
@@ -30,13 +30,16 @@ function Header({setShowSearch,setValue}) {
     ONE:1
   }]);
   useEffect(() => {
-    axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
+    // axios.get("https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/currency")
+    axios.get("https://cbu.uz/ru/arkhiv-kursov-valyut/json/")
       .then((response) => {
-      setPost(response.data);
+      setPost(response);
     });
     // if (!post) return null;
-    console.log(post);
+    // console.log(post);
   }, []);
+  // console.log(post);
+
 
   return (
     <>
@@ -49,7 +52,8 @@ function Header({setShowSearch,setValue}) {
           </svg>
         </button>
         <a className='sidebar__respons-link' href="/"><img className='sidebar__respons-logo' src={logo} alt="logo" /></a>
-        <form className={ResSearch ? `header__form` : "header__res-top"}  >
+       <div className={ResSearch ? `header__form` : "header__res-top"}>
+       <form className='res-form-search'>
           <input className='header__search' type="search" placeholder={t('sayt-boylab-izlash')} onChange={(e) => searchHendler(e)} />
           <button className='header__search-btn'>
             <svg className='header__search-icon' width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,17 +61,18 @@ function Header({setShowSearch,setValue}) {
               <path d="M15.75 15.75L12.4875 12.4875" stroke="#072D4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <button className='sidebar-respond-close' onClick={() => setResSearch(!ResSearch)} >x</button>
         </form>
-       <NavLink className="respons-menu" to="resmenu">
-        <div className='respons-menu'>
+        <button className='sidebar-respond-close' onClick={() => setResSearch(!ResSearch)} >x</button>
+       </div>
+       {/* <NavLink className="respons-menu" to="resmenu"> */}
+        <div className='respons-menu' onClick={() => setresmenu(!resmenu)}>
             <button className='respons-menu-btn'>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z" fill="#072D4B"/>
               </svg>
             </button>
           </div>
-       </NavLink>
+       {/* </NavLink> */}
         <div className='header__valuta'>
           <div className='header__valuta-item'>
             <span className='header__valuta-text'>USD = </span>

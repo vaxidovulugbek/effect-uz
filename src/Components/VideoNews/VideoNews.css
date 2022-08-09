@@ -66,6 +66,9 @@
   margin-bottom: 15px;
   border-bottom: 0.2px solid #072e4b38;
 }
+.videonews-l-img-content {
+  position: relative;
+}
 .videonews__video {
   width: 125.45px;
   height: 70.58px;
@@ -97,6 +100,16 @@
   border-radius: 5px;
   border: 1px solid #000;
   background-color: transparent;
+}
+.videonews-video {
+  width: 100%;
+}
+.video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
 }
 
 @media screen and (max-width:790px) {

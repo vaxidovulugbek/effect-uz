@@ -76,7 +76,9 @@ function Sidebar() {
                   <div className="accordion-body">
                     <ul className='mt-3 accordion-body__list'>
                     {data.map((item) => (
-                       <li className='accardion-body-item'>{item.name_uz}</li>
+                       <NavLink to={`dd`}>
+                         <li className='accardion-body-item'>{item.name_uz}</li>
+                       </NavLink>
                      ))}
                     </ul>
                   </div>

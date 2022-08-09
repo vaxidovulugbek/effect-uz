@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Sidebar.css'
-function ResMenu() {
+function ResMenu({resmenu,setresmenu}) {
   return (
    <>
      <div className='res-menubar'>

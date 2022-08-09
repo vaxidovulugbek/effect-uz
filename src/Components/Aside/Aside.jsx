@@ -12,9 +12,10 @@ import POST from '../../API/POST'
 // import '../../i18n';
 
 function Aside() {
+  const {t,i18n} = useTranslation()
   const [data, setData] = useState([]);
-  const [newsFour, setNewsFour] = useState([]);
-  const [newsRest, setNewsRest] = useState([]);
+  const [newsTop10, setNewsTop10] = useState([]);
+  // const [newsRest, setNewsRest] = useState([]);
 
   const params = {
     count: 10
@@ -23,11 +24,11 @@ function Aside() {
   const fetchData = async () => {
     try {
       // const category = await GET.category();
-      const newsEnd = await POST.top10news(params)
+      const TOP10NEWS = await GET.top10news(params)
       // const newsRest = await GET.news()
       
       // setData(category.data);
-      setNewsFour(newsEnd.data.items)
+      setNewsTop10(TOP10NEWS.data.items)
       // setNewsRest(newsRest.data.items)
     } catch (error) {}
   };
@@ -112,7 +113,7 @@ function Aside() {
           <div className='aside__weather-bottom d-flex justify-content-between'>
             <div className='d-flex flex-column'>
               <span className='aside__weather-text'>{weatherSituation}</span>
-              <div className='aside__weather-info'><span>{weatherTemp}<span>°c</span></span> / <span>25<span>°c</span></span></div>
+              <div className='aside__weather-info'><span>{weatherTemp}<span>°c</span></span></div>
             </div>
             <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M26 36.8333C31.9831 36.8333 36.8334 31.983 36.8334 26C36.8334 20.0169 31.9831 15.1666 26 15.1666C20.0169 15.1666 15.1667 20.0169 15.1667 26C15.1667 31.983 20.0169 36.8333 26 36.8333Z" stroke="#FFCF26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,11 +135,11 @@ function Aside() {
               <path d="M16 8L2 22" stroke="#072D4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M17.5 15H9" stroke="#072D4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>Mobil muhbirga aylaning!</span>
+            <span>{t("mobil-muxbirga-aylaning")}</span>
             </div>
             <div className='aside__more-bottom d-flex align-items-center'>
-              <p>Masofadan bizning muhbirga aylaning !</p>
-              <a href="#">Batafsil</a>
+              <p>{t("masofadan-muxbirga-aylaning")}</p>
+              <a href="#">{t("batafsil")}</a>
             </div>
           </div>
 
@@ -151,10 +152,11 @@ function Aside() {
                 <path d="M16 16.9995H8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M10 8.99951H9H8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>Eng ko‘p o‘qilgan</span>
+              <span>{t("kop-oqilgan")}</span>
             </div>
             {
-              newsFour.map((item,i) => {
+              newsTop10.map((item,i) => {
+                // console.log(newsTop10);
                 return <NavLink to={`main/${item.id}`}>
                   <div className='aside__read-info' key={i}>
                 <div className='d-flex align-items-center'>

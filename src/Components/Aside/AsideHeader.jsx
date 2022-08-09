@@ -45,7 +45,7 @@ function AsideHeader() {
           </button>
         </div>
         <select className='aside__lang' name="lang" id="lang" onChange={(e) => setLang(e.target.value)}> 
-          <option className='aside__options' value="uz" >Uz</option>
+          <option className='aside__options' value="uz">Uz</option>
           <option className='aside__options' value="oz">Oz</option>
           <option className='aside__options' value="ru">Ru</option>
         </select>

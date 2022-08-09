@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Sidebar.css'
 import GET from '../../API/GET'
 import { useTranslation } from 'react-i18next';
-function ResponsiveNavbar() {
+function ResponsiveNavbar({setresmenu ,resmenu}) {
   // const [resn, setn] = useState(["Madaniyat","Sport","Siyosat","Ilm-fan","Iqtisodiyot","Texnologiya","Siyosat","Ilm-fan"])
   const {t,i18n} = useTranslation()
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ function ResponsiveNavbar() {
   }, []);
 
   return (
-    <div className='respons-navbar'>
+    <div className={resmenu === true ? 'respons-navbar' : "respons-navbar show"}>
       <p className='respons-navbar__name'>{t("ruknlar")}</p>
       <ul className='respons-navbar__list'>
         {

@@ -26,6 +26,7 @@ body {
   --section-bg: #202C36;
   --aside-bg: #1e2732;
   --yangiliklar-hr: #fff;
+  --item-content-bg: #1e2732;
 }
 :root {
   --body-color: #F4F9F8;
@@ -38,6 +39,7 @@ body {
   --section-bg: #F4F9F8;
   --aside-bg: #fff;
   --yangiliklar-hr:#0768B5;
+  --item-content-bg: #fff;
 }
 
 code {
@@ -65,5 +67,8 @@ h4 {
 @media screen and (max-width:520px){
   body {
     padding: 0 0 70px 0;
+  }
+  .res-mt-search {
+    padding-top: 70px;
   }
 }

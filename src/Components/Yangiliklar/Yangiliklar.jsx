@@ -6,29 +6,16 @@ import GET from '../../API/GET'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Footer from '../Footer/Footer'
-function Yangiliklar() {
+function Yangiliklar({filtered,showSearch}) {
   const {t,i18n} = useTranslation()
   const [newsAll, setnewsAll] = useState([])
   const newsall = async () => {
     try {
       const news = await GET.news();
       setnewsAll(news.data.items)
-      // console.log(news);
-
     } catch(err) {}
   }
-  // const fetchData = async () => {
-  //   try {
-  //     const category = await GET.category();
-  //     const newsEnd = await POST.newsFour(params)
-  //     const newsRest = await GET.news()
-      
-  //     setData(category.data);
-  //     setNewsFour(newsEnd.data.items.slice(0, params.count))
-  //     setNewsContent(newsEnd.data.items.slice(0, 1))
-  //     setNewsRest(newsRest.data.items)
-  //   } catch (error) {}
-  // };
+
   useEffect(() => {
     newsall();
   }, []);
@@ -39,9 +26,39 @@ function Yangiliklar() {
       <div>
         <p className='yangiliklar-name'>{t("yangilikalar-lentasi")}</p>
         <div className='yangiliklar'>
-        <div className='yangiliklar__date'>
-          <span>22.07.2022</span>
-        </div>
+       <div> 
+       {
+          filtered.map((item,i) => {
+            return <NavLink className={showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
+              <div className='news__content-item'>
+                <div className='news__content-subitem d-flex'>
+                  <div className='d-flex flex-column'>
+                    <div className='news__content-cardsheader '>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g opacity="0.5">
+                        <path d="M9 2.5H3C2.44772 2.5 2 2.94772 2 3.5V9.5C2 10.0523 2.44772 10.5 3 10.5H9C9.55228 10.5 10 10.0523 10 9.5V3.5C10 2.94772 9.55228 2.5 9 2.5Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 1.5V3.5" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 1.5V3.5" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 5.5H10" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 7.5H4V8.5H5V7.5Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                      </svg>
+                      <p>11:45  |  <span>{item.created_date}</span></p>
+                    </div>
+                    <h3 className='news__content-cardstitle'>
+                    {/* {i18n.language === "uz" ? parse(item.description_uz) : i18n.language === "rus" ? parse(item.description_ru) : i18n.language === "rus" ? parse(item.description_oz) : parse(item.description_uz)} */}
+                       {i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ?  item.title_oz :  i18n.language === "ru" ?  item.title_ru : item.title_uz }
+                      </h3>
+                  </div>
+                  <div>
+                    <img className='news__content-cardsimg' src={item.default_img} alt="card" />
+                  </div>
+                </div>
+              </div>
+          </NavLink>
+          })
+        }
+       </div>
        {
           newsAll.map((item,i) => {
             return <NavLink to={`/main/${item.id}`} >
@@ -99,7 +116,7 @@ function Yangiliklar() {
                           <path d="M8.35449 10.412L11 11L10.412 8.3545C10.7992 7.63019 11.0012 6.82132 11 6C11 3.2385 8.76149 1 5.99999 1C3.23849 1 0.999994 3.2385 0.999994 6C0.999994 8.7615 3.23849 11 5.99999 11C6.82132 11.0012 7.63019 10.7992 8.35449 10.412ZM8.20949 9.3555L7.88299 9.5305C7.30372 9.84007 6.6568 10.0014 5.99999 10C5.20887 10 4.43551 9.7654 3.77771 9.32588C3.11992 8.88635 2.60723 8.26164 2.30448 7.53073C2.00173 6.79983 1.92251 5.99556 2.07685 5.21964C2.23119 4.44371 2.61216 3.73098 3.17157 3.17157C3.73098 2.61216 4.44371 2.2312 5.21963 2.07686C5.99556 1.92252 6.79982 2.00173 7.53073 2.30448C8.26163 2.60723 8.88635 3.11992 9.32587 3.77772C9.7654 4.43552 9.99999 5.20887 9.99999 6C9.99999 6.667 9.83749 7.309 9.52999 7.883L9.35549 8.2095L9.68299 9.683L8.20949 9.3555Z" fill="black"/>
                           </g>
                         </svg>
-                        <div><span>{item.comment_count}</span><span>Izoh</span></div>
+                        <div><span>{item.comment_count}</span><span>{t("izoh")}</span></div>
                       </div>
                     </div>
                     </div>

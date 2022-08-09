@@ -5,12 +5,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Habarlar() {
   const xabarlar = [1,2,3,4,5,6,7]
+  const {t,i18n} = useTranslation()
+  let location = useLocation()
+  let location1 = location.pathname.split('/').at(-1)
+  
   return (
     <div className='xabarlar'>
-      <p className='xabarlar-text'>Mavzuga oid xabarlar</p>
+      <p className='xabarlar-text'>{t("mavzuga-oid")}</p>
       <div className='xabarlar__info  d-flex align-items-center justify-content-between'>
         {/* {
           xabarlar.map((item,i) => {

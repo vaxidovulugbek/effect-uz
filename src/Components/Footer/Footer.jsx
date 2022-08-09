@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import './Footer.css'
 function Footer() {
+  const {t,i18n} = useTranslation()
   return (
     <footer className='footer'>
       <svg className='footer__logo' width="116" height="27" viewBox="0 0 116 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +30,7 @@ function Footer() {
           <div className='footer-item-content'>
             {/* <div className='footer__respons-items d-flex'> */}
               <div className='footer__item'>
-                <p>Foydali sahifalar</p>
+                <p>{t("foydali-sahifa")}</p>
                 <a href="#">Yangiliklar lentasi</a>
                 <a href="#">Foto-yangiliklar</a>
                 <a href="#">Video-yangiliklar</a>
@@ -36,7 +38,7 @@ function Footer() {
                 <a href="#">Integrations</a>
               </div>
               <div className='footer__item'>
-                <p>Ruknlar</p>
+                <p>{t("ruknlar")}</p>
                 <a href="#">Siyosat</a>
                 <a href="#">Texnologiya</a>
                 <a href="#">Sport</a>
@@ -45,7 +47,7 @@ function Footer() {
             {/* </div> */}
             {/* <div className='footer__respons-items d-flex'> */}
               <div className='footer__item'>
-                <p>Hududlar</p>
+                <p>{t("hududlar")}</p>
                 <a href="#">Toshkent</a>
                 <a href="#">Samarqand</a>
                 <a href="#">Qashqadaryo</a>
@@ -54,7 +56,7 @@ function Footer() {
                 <a href="#">Support</a>
               </div>
               <div className='footer__item'>
-                <p>Biz haqimizda</p>
+                <p>{t("biz-haqimizda")}</p>
                 <a href="#">About Us</a>
                 <a href="#">Careers</a>
                 <a href="#">Ko’p so’raladigan savollar</a>
@@ -67,7 +69,7 @@ function Footer() {
           <div className='footer-item-rescontent'>
             <div className='footer__respons-items d-flex'>
               <div className='footer__item'>
-                <p>Foydali sahifalar</p>
+                <p>{t("foydali-sahifa")}</p>
                 <a href="#">Yangiliklar lentasi</a>
                 <a href="#">Foto-yangiliklar</a>
                 <a href="#">Video-yangiliklar</a>
@@ -75,7 +77,7 @@ function Footer() {
                 <a href="#">Integrations</a>
               </div>
               <div className='footer__item footer-res-l-item'>
-                <p>Ruknlar</p>
+                <p>{t("ruknlar")}</p>
                 <a href="#">Siyosat</a>
                 <a href="#">Texnologiya</a>
                 <a href="#">Sport</a>
@@ -84,7 +86,7 @@ function Footer() {
             </div>
             <div className='footer__respons-items footer-res-l d-flex'>
               <div className='footer__item footer-res-mt'>
-                <p>Hududlar</p>
+                <p>{t("hududlar")}</p>
                 <a href="#">Toshkent</a>
                 <a href="#">Samarqand</a>
                 <a href="#">Qashqadaryo</a>
@@ -93,7 +95,7 @@ function Footer() {
                 <a href="#">Support</a>
               </div>
               <div className='footer__item footer-res-l-item footer-res-mt'>
-                <p>Biz haqimizda</p>
+                <p>{t("biz-haqimizda")}</p>
                 <a href="#">About Us</a>
                 <a href="#">Careers</a>
                 <a href="#">Ko’p so’raladigan savollar</a>

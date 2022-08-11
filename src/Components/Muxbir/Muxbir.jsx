@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Muxbir.css'
 import GET from '../../API/GET'
 import { NavLink, useLocation, useParams } from 'react-router-dom'
 import { ListItem } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-function Muxbir({filtered,showSearch}) {
+import { context } from '../../App'
+function Muxbir({filtered}) {
+  let contexts = useContext(context)
+
   const {t,i18n} = useTranslation()
   let location = useLocation()
   let location1 = location.pathname.split('/').at(-1)
@@ -32,7 +35,7 @@ function Muxbir({filtered,showSearch}) {
     <div className='res-mt-search'>
        {
           filtered.map((item,i) => {
-            return <NavLink className={showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
+            return <NavLink className={contexts.showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
               <div className='news__content-item'>
                 <div className='news__content-subitem d-flex'>
                   <div className='d-flex flex-column'>

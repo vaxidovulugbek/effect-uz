@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom';
-import newsimg from '../../Assets/imgs/newsimg.png';
-import parse from 'html-react-parser';
 import News from './News';
 
 import GET from '../../API/GET'
 import POST from '../../API/POST'
-import Footer from '../Footer/Footer';
+import { context } from '../../App';
 
-function NewsContent({showSearch,value,filtered}) {
+function NewsContent({filtered}) {
   const {t,i18n} = useTranslation()
+  let contexts = useContext(context)
 
   const [data, setData] = useState([]);
   const [newsFour, setNewsFour] = useState([]);
@@ -47,7 +46,7 @@ function NewsContent({showSearch,value,filtered}) {
       <div>
       {
           filtered.map((item,i) => {
-            return <NavLink className={showSearch ? 'show-news-content' : ""} to={`main/${item.id}`}>
+            return <NavLink className={contexts.showSearch ? 'show-news-content' : ""} to={`main/${item.id}`}>
               <div className='news__content-item'>
                 <div className='news__content-subitem d-flex'>
                   <div className='d-flex flex-column'>
@@ -77,7 +76,7 @@ function NewsContent({showSearch,value,filtered}) {
           })
         }
       </div>
-      <div className={showSearch ? 'news__content' : "show-news-content"}>
+      <div className={contexts.showSearch ? 'news__content' : "show-news-content"}>
         {
           newsContent.map((item,i) => {
             return <div className='news__content-info'>

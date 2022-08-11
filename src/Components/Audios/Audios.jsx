@@ -1,28 +1,34 @@
 import { Slider } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
-import Aside from '../Aside/Aside'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { FaPlay,FaPause } from 'react-icons/fa';
 import './Audios.css'
 import GET from '../../API/GET'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-function Audios({filtered,showSearch}) {
-  let audiosarr = [1,2,3,4,5,6,7]
+import { context } from '../../App';
+function Audios({filtered}) {
+  let contexts = useContext(context)
+  
+  const [count, setCount] = useState(1)
+  
   const {t,i18n} = useTranslation()
   let [voise,setVoisec] = useState([])
+  let [voisesAll,setVoisesAll] = useState([])
   const fetchData = async () => {
     try {
-      const voisec = await GET.voice_one(2);
+      const voisec = await GET.voice_one(count);
+      // console.log(count);
+      const voisec_all = await GET.voisec();
       setVoisec(voisec.data);
+      setVoisesAll(voisec_all.data.items)
     } catch (error) {}
   };
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(voise);
-
   // Plyer uchun
+  let [currentsong, setcurrentsong] = useState(voisesAll[0])
   let audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState({ current: 0, duration: 0 })
@@ -56,14 +62,34 @@ function Audios({filtered,showSearch}) {
     }
     setPlaying(!playing)
   }
-  
+// START NEXT MUSIC
+//   let nextMusic = () => {
+//     // setisplaying(false)
+//     // setcolor(false)
+// // console.log(voisesAll[0]);
 
+//     let next = voisesAll.findIndex((song) => song.id === currentsong.id)
+//     if (shufflecolor) {
+//       setcurrentsong(voisesAll[(next + Math.floor(Math.random() * voisesAll.length)) % voisesAll.length ])
+//     }
+//     else {
+//       setcurrentsong(voisesAll[(next + 1) % voisesAll.length ])
+//     }
+//   }
+
+const nextHendler = () => {
+  setCount(count + 1)
+  // console.log(count);
+  if (count === 5) {
+    setCount(1)
+  }
+}
   return (
     <>
   <div className='audios-search'>
       {
           filtered.map((item,i) => {
-            return <NavLink className={showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
+            return <NavLink className={contexts.showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
               <div className='news__content-item'>
                 <div className='news__content-subitem d-flex'>
                   <div className='d-flex flex-column'>
@@ -97,22 +123,14 @@ function Audios({filtered,showSearch}) {
       <div className='audios'>
         <p className='audios__name'>{t("audio-habarlar")}</p>
         <div className='audios__content'>
-          <h2 className='audios__title'>Leak: Samsung to announce the Z Fold 3 and Galaxy Watch 4 in August</h2>
+          <h2 className='audios__title'> {i18n.language === "uz" ? voise.title_uz : i18n.language === "oz" ?  voise.title_oz :  i18n.language === "ru" ?  voise.title_ru : voise.title_uz }</h2>
           <div className='audios__bottom d-flex align-items-center justify-content-between'>
             <div className="audios__control d-flex align-items-center">
-              <button className="audios__control-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.8273 12L15.7773 16.95L14.3633 18.364L7.99934 12L14.3633 5.63601L15.7773 7.05001L10.8273 12Z" fill="#072D4B"/>
-                </svg>
-              </button>
-              <button className="audios__control-center" onClick={play}>
-                {/* <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24.22 15.52L10.9713 24.3525C10.8771 24.4152 10.7678 24.4511 10.6549 24.4565C10.5419 24.4619 10.4297 24.4366 10.33 24.3832C10.2303 24.3298 10.147 24.2504 10.0889 24.1535C10.0308 24.0565 10.0001 23.9456 10 23.8325V6.16752C10.0001 6.05447 10.0308 5.94355 10.0889 5.84658C10.147 5.7496 10.2303 5.67021 10.33 5.61685C10.4297 5.56349 10.5419 5.53816 10.6549 5.54356C10.7678 5.54896 10.8771 5.58489 10.9713 5.64752L24.22 14.48C24.3056 14.5371 24.3758 14.6144 24.4243 14.7051C24.4729 14.7958 24.4983 14.8971 24.4983 15C24.4983 15.1029 24.4729 15.2042 24.4243 15.2949C24.3758 15.3856 24.3056 15.4629 24.22 15.52Z" fill="#072D4B"/>
-                </svg> */}
-              {!playing ? <FaPlay /> : <FaPause />}
 
-              </button>
-              <button className="audios__control-btn">
+              <button className="PREV audios__control-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.8273 12L15.7773 16.95L14.3633 18.364L7.99934 12L14.3633 5.63601L15.7773 7.05001L10.8273 12Z" fill="#072D4B"/></svg></button>
+              <button className="audios__control-center" onClick={play}>{!playing ? <FaPlay /> : <FaPause />}</button>
+              <button className="NEXT audios__control-btn" onClick={() => nextHendler} >
+
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.1727 12L8.22266 7.04999L9.63666 5.63599L16.0007 12L9.63666 18.364L8.22266 16.95L13.1727 12Z" fill="#072D4B"/>
                 </svg>
@@ -138,20 +156,21 @@ function Audios({filtered,showSearch}) {
                 onTimeUpdate={timeHandler}
                 onLoadedMetadata={timeHandler}
                 ref={audioRef}
-                src="https://voydod.net/uploads/files/uzmusic2/Benom_Guruhi_-_Adashdimmi.mp3"></audio>
+                src={voise.voice}></audio>
+                {/* <audio onTimeUpdate={timeHandler} onLoadedMetadata={timeHandler}  ref={audioRef} src={currentsong.audio}></audio> */}
             </div>
           </div>
         </div>
 
         <div className='audios__info'>
           {
-            audiosarr.map((item,i)=> {
+            voisesAll.map((item,i)=> {
               // voise
               // audiosarr
               return <div className='audios__info-item d-flex' key={i} >
-              <img className='audios__info-img' src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/33/f6/60/caption.jpg?w=700&h=500&s=1" alt="news" />
+              <img className='audios__info-img' src={item.img} alt="news_voise" />
               <div className='audios__info-c'>
-                <h3 className='audios__info-title'>hghgh</h3>
+                <h3 className='audios__info-title'>{i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ?  item.title_oz :  i18n.language === "ru" ?  item.title_ru : item.title_uz }</h3>
                 {/* {item.title_uz} */}
                 <div className='d-flex '>
                   <div className='audios__info-w d-flex align-items-center'>
@@ -164,11 +183,10 @@ function Audios({filtered,showSearch}) {
                       <path d="M6.66732 10H5.33398V11.3333H6.66732V10Z" stroke="black" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
                       </g>
                   </svg>
-                  <div className='audios__info-time d-flex align-items-center'><span>11:45</span>  <span className='ms-2 me-2'>|</span>  <span>13.07.2022</span></div>
+                  <div className='audios__info-time d-flex align-items-center'><span>11:45</span>  <span className='ms-2 me-2'>|</span>  <span>{item.created_date}</span></div>
                   </div>
                   <div className='d-flex align-items-center'>
-                    <button className='audios__info-btn'>Tech</button>
-                    <button className='audios__info-btn'>Mobile</button>
+                    <button className='audios__info-btn'>{item.category_id}</button>
                   </div>
                 </div>
               </div>

@@ -200,13 +200,13 @@ a {
 }
 .respons-navbar {
   width: 100%;
-  display: none;
   /* margin-top: 70px; */
   background: var(--news-bg);
   padding: 16px 30px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
   transition: all 0.4s;
+  display: none;
 }
 .respons-navbar__name {
   text-align: center;
@@ -268,8 +268,7 @@ a {
   }
   .respons-navbar {
     position: absolute;
-    top: -100%;
-
+    top: -150%;
     display: block;
   }
   .show {

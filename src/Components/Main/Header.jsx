@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios";
 import { NavLink, Route, Routes } from 'react-router-dom'
 import AsideHeader from '../Aside/AsideHeader'
@@ -8,20 +8,21 @@ import logo from '../../Assets/imgs/logo.svg'
 import GET from '../../API/GET'
 import POST from '../../API/POST'
 import { useTranslation } from 'react-i18next';
+import { context } from '../../App';
 
-function Header({setShowSearch,setValue,setresmenu,resmenu}) {
+function Header() {
   const {t,i18n} = useTranslation()
+  let contexts = useContext(context)
 
 // START SEARCH PART
   let [ResSearch,setResSearch] = useState(true)
 
-  // let [value,setValue] = useState("")
   let searchHendler = (e) => {
-    setValue(e.target.value)
-    setShowSearch(false)
+    contexts.setValue(e.target.value)
+    contexts.setShowSearch(false)
     
     if(e.target.value === "") {
-      setShowSearch(true)
+      contexts.setShowSearch(true)
     }
   }
 
@@ -30,15 +31,11 @@ function Header({setShowSearch,setValue,setresmenu,resmenu}) {
     ONE:1
   }]);
   useEffect(() => {
-    // axios.get("https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/currency")
     axios.get("https://cbu.uz/ru/arkhiv-kursov-valyut/json/")
       .then((response) => {
       setPost(response);
     });
-    // if (!post) return null;
-    // console.log(post);
   }, []);
-  // console.log(post);
 
 
   return (
@@ -65,7 +62,7 @@ function Header({setShowSearch,setValue,setresmenu,resmenu}) {
         <button className='sidebar-respond-close' onClick={() => setResSearch(!ResSearch)} >x</button>
        </div>
        {/* <NavLink className="respons-menu" to="resmenu"> */}
-        <div className='respons-menu' onClick={() => setresmenu(!resmenu)}>
+        <div className='respons-menu' onClick={() => contexts.setresmenu(!contexts.resmenu)}>
             <button className='respons-menu-btn'>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z" fill="#072D4B"/>

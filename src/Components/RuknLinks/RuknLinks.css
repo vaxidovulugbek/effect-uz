@@ -1,0 +1,20 @@
+.ruklar-mains {
+  width: 65%;
+}
+@media screen and (max-width:720px) {
+  .ruklar-mains {
+    width: 100%;
+  }
+}
+@media screen and (max-width:520px){
+  .ruklar-mains {
+    margin-top: 70px;
+  }
+  .yangiliklar-name {
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+  .yangiliklar {
+    margin: 0;
+  }
+}

@@ -1,33 +1,55 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Aside from '../Aside/Aside'
-// import AsideHeader from '../Aside/AsideHeader'
-import './Yangiliklar.css'
+import '../Yangiliklar/Yangiliklar.css'
 import GET from '../../API/GET'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import './RuknLinks.css'
 import { context } from '../../App'
 // import Footer from '../Footer/Footer'
-function Yangiliklar({filtered,showSearch}) {
+function RuknLinks({filtered}) {
   let contexts = useContext(context)
+
+  const [rukn, setrukn] = useState([])
+  const [data, setData] = useState([]);
+
+  let {id} = useParams()
+
+  // console.log(id);
 
   const {t,i18n} = useTranslation()
   const [newsAll, setnewsAll] = useState([])
   const newsall = async () => {
     try {
       const news = await GET.news();
+      const news_categor = await GET.news_category(id)
+
+      const category = await GET.category();
+      setData(category.data);
+
+      setrukn(news_categor.data.items)
       setnewsAll(news.data.items)
     } catch(err) {}
   }
 
   useEffect(() => {
     newsall();
-  }, []);
+  }, [id]);
  
+  // console.log(rukn);
   return (
   <>
-      <div className='d-flex'>
-      <div>
-        <p className='yangiliklar-name'>{t("yangilikalar-lentasi")}</p>
+    <div className='d-flex'>
+      <div className='ruklar-mains'>
+        <div>
+        {
+            data.map((item,i) => {
+              if(+id === +item.id) {
+                return <p className='yangiliklar-name'>{item.name_uz}</p>
+              }
+            })
+          }
+        </div>
         <div className='yangiliklar'>
        <div> 
        {
@@ -63,7 +85,7 @@ function Yangiliklar({filtered,showSearch}) {
         }
        </div>
        {
-          newsAll.map((item,i) => {
+          rukn.map((item,i) => {
             return <NavLink to={`/main/${item.id}`} >
               <div className='yangiliklar__c'>
                   <div className='yangiliklar__content d-flex'>
@@ -141,4 +163,4 @@ function Yangiliklar({filtered,showSearch}) {
   )
 }
 
-export default Yangiliklar
+export default RuknLinks

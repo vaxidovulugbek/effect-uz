@@ -1,5 +1,5 @@
 import { Rating } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useLocation ,useParams } from 'react-router-dom'
 import Aside from '../Aside/Aside'
 import parse from 'html-react-parser';
@@ -10,7 +10,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 import Habarlar from './Habarlar';
-function Info({filtered,showSearch,setIsLoading,isLoading}) {
+import { context } from '../../App';
+function Info({filtered}) {
+  let contexts = useContext(context)
+
   const {t,i18n} = useTranslation()
   const [inputValue,setInputValue] = useState("")
   const [userValue, setUSerValue] = useState("");
@@ -59,11 +62,11 @@ function Info({filtered,showSearch,setIsLoading,isLoading}) {
       const newcomment = await GET.newItem(location1);
       const newsShare = await GET.config()
       const response = await GET.newItem(location1);
-      const news_category = await GET.news_category(location1)
+      // const news_categor = await GET.news_category(location1)
       // console.log(newsRest.status);
 
-      setNewsCategory(news_category.data.items)
-
+      // setNewsCategory(news_categor.data.items)
+      // console.log(newsCategory);
       setReyting(response.data)
       
       setData(newsShare.data)
@@ -78,9 +81,7 @@ function Info({filtered,showSearch,setIsLoading,isLoading}) {
     fetchData();
   }, []);
 
-  // setTimeout(() => {
-  //   setIsLoading(false)
-  // }, 2000);
+// console.log(newsCategory);
 
   let stars = {
     star: star,
@@ -100,7 +101,7 @@ function Info({filtered,showSearch,setIsLoading,isLoading}) {
      <div className='res-mt-search'>
         {
           filtered.map((item,i) => {
-            return <NavLink className={showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
+            return <NavLink className={contexts.showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
               <div className='news__content-item'>
                 <div className='news__content-subitem d-flex'>
                   <div className='d-flex flex-column'>

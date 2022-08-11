@@ -9,31 +9,37 @@ function VideoNews() {
   const {t,i18n} = useTranslation()
   const [video,setVideo] = useState([])
   const [videos ,setVideos] = useState([])
-  const [one, setOne] = useState([])
+  const [one, setOne] = useState(null)
+  const [videobool , setVideobool] = useState(false)
   const fetchData = async () => {
     try {
       const videos  = await GET.videos();
       setVideo(videos.data);
       setOne(videos.data.slice(0, 1))
+  // console.log(videos.data);
+
     } catch (error) {}
   };
   useEffect(() => {
     fetchData();
   }, []);
 
+  const videoHendler = (item) => {
+    setVideos([item])
+    setVideobool(true)
+  }
   return (
     <div className='videonews'>
       <h2 className='videonews__title'>{t("video-yangiliklar")}</h2>
       <div className='videonews__content'>
 
-        <VideoPlay one={one} setOne={setOne} setVideos={setVideos} videos={videos} />
+        <VideoPlay one={one} setOne={setOne} setVideos={setVideos} videos={videos} videobool={videobool} setVideobool={setVideobool} />
         {/* onClick={() => setOne(item)}  */}
         <div className='videonews__ci'>
           <div className='videonews__info'> 
           {
             video.map((item,i) => {
-              // console.log(item);
-              return <div className='videonews__info-item d-flex' onClick={() => setVideos([item])}>
+              return <div className='videonews__info-item d-flex' onClick={() => videoHendler(item) }>
                   <div className='videonews-l-img-content'>
                     <img className='videonews__video d-flex' src={item.default_img} alt="video-news" />
                     <div className='video-play'>

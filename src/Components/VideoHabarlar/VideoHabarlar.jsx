@@ -1,11 +1,14 @@
 import { Slider } from '@mui/material'
-import React, {useState, useEffect } from 'react'
+import React, {useState, useEffect, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import Aside from '../Aside/Aside'
 import './VideoHabarlar.css'
 import GET from '../../API/GET'
 import { NavLink } from 'react-router-dom'
-function VideoHabarlar({filtered,showSearch}) {
+import { context } from '../../App'
+function VideoHabarlar({filtered}) {
+  let contexts = useContext(context)
+
   const {t,i18n} = useTranslation()
 
   let [video,setVideo] = useState([])
@@ -25,7 +28,7 @@ function VideoHabarlar({filtered,showSearch}) {
         <div className='audios-search'>
               {
                   filtered.map((item,i) => {
-                    return <NavLink className={showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
+                    return <NavLink className={contexts.showSearch ? 'show-news-content' : ""} to={`/main/${item.id}`}>
                       <div className='news__content-item'>
                         <div className='news__content-subitem d-flex'>
                           <div className='d-flex flex-column'>

@@ -157,7 +157,7 @@ function Aside() {
             {
               newsTop10.map((item,i) => {
                 // console.log(newsTop10);
-                return <NavLink to={`main/${item.id}`}>
+                return <NavLink to={`/main/${item.id}`}>
                   <div className='aside__read-info' key={i}>
                 <div className='d-flex align-items-center'>
                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">

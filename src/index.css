@@ -27,6 +27,8 @@ body {
   --aside-bg: #1e2732;
   --yangiliklar-hr: #fff;
   --item-content-bg: #1e2732;
+  --card-main-bg: #171e27;
+  --music-border:#fff;
 }
 :root {
   --body-color: #F4F9F8;
@@ -40,6 +42,8 @@ body {
   --aside-bg: #fff;
   --yangiliklar-hr:#0768B5;
   --item-content-bg: #fff;
+  --card-main-bg: #fff;
+  --music-border:#2C3E50;
 }
 
 code {

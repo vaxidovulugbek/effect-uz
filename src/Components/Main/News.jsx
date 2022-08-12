@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import '../../i18n';
 import GET from '../../API/GET'
 import POST from '../../API/POST'
@@ -47,7 +47,7 @@ function News() {
         <Carousel className='news__list' responsive={responsive}>
         {
           data.map((item,index) => { 
-            return <button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ? item.name_oz : item.name_uz}</button>
+            return <NavLink to={`/rukn/${item.id}`}><button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ?  item.name_oz :  i18n.language === "ru" ?  item.name_ru : item.name_uz }</button></NavLink>
                 })
         }
         </Carousel>
@@ -56,7 +56,7 @@ function News() {
         {
           data.map((item,index) => { 
             return <li className=''>
-              <button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ? item.name_oz : item.name_uz}</button>
+              <NavLink to={`/rukn/${item.id}`}><button className='news__btn' key={item.id}>{i18n.language === "uz" ? item.name_uz : i18n.language === "oz" ?  item.name_oz :  i18n.language === "ru" ?  item.name_ru : item.name_uz }</button></NavLink>
             </li>
           })
         }

@@ -16,8 +16,8 @@ function Muxbir({filtered}) {
  
   const infoUser = async () => {
     try{
-      const data = await GET.reporterone()
-      setData(data.data)
+      const datas = await GET.reporter(6)
+      setData(datas.data)
     }catch(err) {
       console.log(err)
       return
@@ -28,7 +28,7 @@ function Muxbir({filtered}) {
     infoUser()
   }, [])
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -52,7 +52,6 @@ function Muxbir({filtered}) {
                       <p>11:45  |  <span>{item.created_date}</span></p>
                     </div>
                     <h3 className='news__content-cardstitle'>
-                    {/* {i18n.language === "uz" ? parse(item.description_uz) : i18n.language === "rus" ? parse(item.description_ru) : i18n.language === "rus" ? parse(item.description_oz) : parse(item.description_uz)} */}
                        {i18n.language === "uz" ? item.title_uz : i18n.language === "oz" ?  item.title_oz :  i18n.language === "ru" ?  item.title_ru : item.title_uz }
                       </h3>
                   </div>
@@ -73,6 +72,13 @@ function Muxbir({filtered}) {
           <h3 className='muxbir__title'>{data.fullName}</h3>
           <ul className='muxbir-list d-flex align-items-center'>
             <li className='muxbir__item'>
+              <a className='muxbir__link' href={`https://t.me/${ typeof(data) !== "undifined" ? data.apiapiapi : "/"}`} target="_blank">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 23.625C7.13181 23.625 2.375 18.8682 2.375 13C2.375 7.13181 7.13181 2.375 13 2.375C18.8682 2.375 23.625 7.13181 23.625 13C23.625 18.8682 18.8682 23.625 13 23.625ZM9.69563 14.2431L9.70944 14.2357L10.6338 17.2851C10.7528 17.6155 10.9164 17.675 11.1151 17.6474C11.3149 17.6208 11.4201 17.5135 11.5507 17.3881L12.813 16.1684L15.5224 18.1744C16.0175 18.4474 16.3734 18.3061 16.4967 17.7154L18.2572 9.4045C18.4517 8.631 18.1117 8.32075 17.5114 8.56725L7.17006 12.5623C6.46456 12.8449 6.46881 13.2401 7.04256 13.4154L9.69563 14.2442V14.2431Z" fill="#314FFC" fill-opacity="0.96"/>
+                </svg>
+              </a>
+            </li>
+            {/* <li className='muxbir__item'>
               <a className='muxbir__link' href="#">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M13 23.625C7.13181 23.625 2.375 18.8682 2.375 13C2.375 7.13181 7.13181 2.375 13 2.375C18.8682 2.375 23.625 7.13181 23.625 13C23.625 18.8682 18.8682 23.625 13 23.625ZM9.69563 14.2431L9.70944 14.2357L10.6338 17.2851C10.7528 17.6155 10.9164 17.675 11.1151 17.6474C11.3149 17.6208 11.4201 17.5135 11.5507 17.3881L12.813 16.1684L15.5224 18.1744C16.0175 18.4474 16.3734 18.3061 16.4967 17.7154L18.2572 9.4045C18.4517 8.631 18.1117 8.32075 17.5114 8.56725L7.17006 12.5623C6.46456 12.8449 6.46881 13.2401 7.04256 13.4154L9.69563 14.2442V14.2431Z" fill="#314FFC" fill-opacity="0.96"/>
@@ -85,14 +91,7 @@ function Muxbir({filtered}) {
                   <path d="M13 23.625C7.13181 23.625 2.375 18.8682 2.375 13C2.375 7.13181 7.13181 2.375 13 2.375C18.8682 2.375 23.625 7.13181 23.625 13C23.625 18.8682 18.8682 23.625 13 23.625ZM9.69563 14.2431L9.70944 14.2357L10.6338 17.2851C10.7528 17.6155 10.9164 17.675 11.1151 17.6474C11.3149 17.6208 11.4201 17.5135 11.5507 17.3881L12.813 16.1684L15.5224 18.1744C16.0175 18.4474 16.3734 18.3061 16.4967 17.7154L18.2572 9.4045C18.4517 8.631 18.1117 8.32075 17.5114 8.56725L7.17006 12.5623C6.46456 12.8449 6.46881 13.2401 7.04256 13.4154L9.69563 14.2442V14.2431Z" fill="#314FFC" fill-opacity="0.96"/>
                 </svg>
               </a>
-            </li>
-            <li className='muxbir__item'>
-              <a className='muxbir__link' href="#">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 23.625C7.13181 23.625 2.375 18.8682 2.375 13C2.375 7.13181 7.13181 2.375 13 2.375C18.8682 2.375 23.625 7.13181 23.625 13C23.625 18.8682 18.8682 23.625 13 23.625ZM9.69563 14.2431L9.70944 14.2357L10.6338 17.2851C10.7528 17.6155 10.9164 17.675 11.1151 17.6474C11.3149 17.6208 11.4201 17.5135 11.5507 17.3881L12.813 16.1684L15.5224 18.1744C16.0175 18.4474 16.3734 18.3061 16.4967 17.7154L18.2572 9.4045C18.4517 8.631 18.1117 8.32075 17.5114 8.56725L7.17006 12.5623C6.46456 12.8449 6.46881 13.2401 7.04256 13.4154L9.69563 14.2442V14.2431Z" fill="#314FFC" fill-opacity="0.96"/>
-                </svg>
-              </a>
-            </li>
+            </li> */}
           </ul>
           </div>
         </div>

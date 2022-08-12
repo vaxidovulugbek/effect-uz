@@ -207,6 +207,7 @@ a {
   border-radius: 4px;
   transition: all 0.4s;
   display: none;
+  z-index: 999999999;
 }
 .respons-navbar__name {
   text-align: center;
@@ -284,6 +285,7 @@ a {
   }
   .show {
     top: -28px !important;
+    z-index: 99999999;
   }
 }
 

@@ -4,6 +4,8 @@
   margin: 0px 0 80px 0;
 }
 .audios__name {
+  font-family: 'Bluu Next';
+  letter-spacing: 1px;
   text-align: center;
   margin-bottom: 20px;
   font-weight: 700;
@@ -13,7 +15,7 @@
   color: var(--primary);
 }
 .audios__content {
-  background: #fff;
+  background: var(--aside-bg);
   padding: 15px 42px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
@@ -24,8 +26,8 @@
   line-height: 34px;
   padding-bottom: 13px;
   margin-bottom: 20px;
-  border-bottom: 1px dashed #2C3E50;
-  color: #072D4B;
+  border-bottom: 1px dashed var(--music-border);
+  color: var(--primary);
 }
 .audios__control-btn {
   display: flex;
@@ -72,12 +74,12 @@
   border-radius: 4px;
   margin-top: 18px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
-  background: #fff;
+  background: var(--aside-bg);
 }
 .audios__info-item {
   padding: 11px 21px;
   border-radius: 4px;
-  background: #fff;
+  background: var(--card-main-bg);
   margin: 0 0 20px 0;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
 }
@@ -102,14 +104,17 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #072D4B;
+  color: var(--primary);
 }
 .audios__info-time {
   font-weight: 400;
   font-size: 12px;
   opacity: 0.6;
   margin-right: 22px;
-  color: #072D4B;
+  color: var(--primary);
+}
+.audios__info-w  svg path {
+  stroke: var(--primary);
 }
 .audios__info-btn {
   font-weight: 400;

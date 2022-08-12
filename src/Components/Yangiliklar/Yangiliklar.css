@@ -42,7 +42,7 @@
   z-index: 1;
 }
 .yangiliklar__content {
-  background: #fff;
+  background: var(--card-main-bg);
   border-radius: 4px;
   padding: 11px 14px;
 }
@@ -76,14 +76,17 @@
   font-size: 17px;
   line-height: 24px;
   margin-top: 27px;
-  color: #072D4B;
+  color: var(--primary);
 }
 .yangiliklar__f {
-  color: #072D4B;
+  color: var(--primary);
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
   opacity: 0.4;
+}
+.yangiliklar__f svg path {
+  stroke: var(--primary);
 }
 .yangiliklar__f-l span {
   margin-left: 3px;
@@ -132,6 +135,8 @@
   background-color: #072D4B;
 }
 .yangiliklar-name {
+  font-family: 'Bluu Next';
+  letter-spacing: 1px;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;

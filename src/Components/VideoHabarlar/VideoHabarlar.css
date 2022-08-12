@@ -4,6 +4,8 @@
   margin: 0px 0 80px 0;
 }
 .videos__name {
+  font-family: 'Bluu Next';
+  letter-spacing: 1px;
   text-align: center;
   margin-bottom: 20px;
   font-weight: 700;
@@ -72,12 +74,12 @@
   border-radius: 4px;
   margin-top: 18px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
-  background: #fff;
+  background: var(--aside-bg);
 }
 .videos__info-item {
   padding: 11px 21px;
   border-radius: 4px;
-  background: #fff;
+  background: var(--card-main-bg);
   margin: 0 0 20px 0;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
 }
@@ -102,14 +104,17 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #072D4B;
+  color: var(--primary);
 }
 .videos__info-time {
   font-weight: 400;
   font-size: 12px;
   opacity: 0.6;
   margin-right: 22px;
-  color: #072D4B;
+  color: var(--primary);
+}
+.videos__info-w svg path {
+  stroke: var(--primary);
 }
 .videos__info-btn {
   font-weight: 400;
@@ -133,8 +138,8 @@
   border-radius: 4px;
   background-color: transparent;
   transition: all 0.4s;
-  border: 1px solid #072D4B;
-  color: #072D4B;
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
 .videos__info-yy:hover {
   color: #fff;

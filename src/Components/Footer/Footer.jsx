@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './Footer.css'
+import GET from '../../API/GET'
+import { NavLink } from 'react-router-dom'
 function Footer() {
   const {t,i18n} = useTranslation()
+
+  const [data, setData] = useState([]);
+  const [region, setRegion] = useState([]);
+  const [dataFollow, setDataFollow] = useState([]);
+  const fetchData = async () => {
+    try {
+      const category = await GET.category();
+      const provence = await GET.provence();
+      const newsRest = await GET.config()
+      setData(category.data);
+      setRegion(provence.data);
+      setDataFollow(newsRest.data)
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <footer className='footer'>
       <svg className='footer__logo' width="116" height="27" viewBox="0 0 116 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,37 +50,44 @@ function Footer() {
             {/* <div className='footer__respons-items d-flex'> */}
               <div className='footer__item'>
                 <p>{t("foydali-sahifa")}</p>
-                <a href="#">Yangiliklar lentasi</a>
-                <a href="#">Foto-yangiliklar</a>
-                <a href="#">Video-yangiliklar</a>
+                <NavLink to='/yangiliklar-lentasi'>{t("yangilikalar-lentasi")}</NavLink>
+                <NavLink to="/video-habarlar">{t("video-yangiliklar")}</NavLink>
                 <a href="#">Content</a>
                 <a href="#">Integrations</a>
               </div>
               <div className='footer__item'>
                 <p>{t("ruknlar")}</p>
-                <a href="#">Siyosat</a>
-                <a href="#">Texnologiya</a>
-                <a href="#">Sport</a>
-                <a href="#">Website Builder</a>
+                <div className='footer-categor'>
+                {data.map((item) => (
+                   <NavLink to={`rukn/${item.id}`}>
+                     <p>{item.name_uz}</p>
+                   </NavLink>
+                ))}
+                </div>
               </div>
             {/* </div> */}
             {/* <div className='footer__respons-items d-flex'> */}
               <div className='footer__item'>
                 <p>{t("hududlar")}</p>
-                <a href="#">Toshkent</a>
+                {/* <a href="#">Toshkent</a>
                 <a href="#">Samarqand</a>
                 <a href="#">Qashqadaryo</a>
                 <a href="#">Hosting</a>
                 <a href="#">Developers</a>
-                <a href="#">Support</a>
+                <a href="#">Support</a> */}
+               <div className='footer-categor'>
+                {region.map((item) => (
+                    <p className='footer-region-name'>{item.name}</p>
+                  ))}
+               </div>
               </div>
               <div className='footer__item'>
                 <p>{t("biz-haqimizda")}</p>
                 <a href="#">About Us</a>
                 <a href="#">Careers</a>
-                <a href="#">Ko’p so’raladigan savollar</a>
-                <a href="#">Jamoa</a>
-                <a href="#">Bo’sh ish o’rni</a>
+                <a href="#">{t("kop-soralgan-savollar")}</a>
+                <a href="#">{t("jamoa")}</a>
+                <a href="#">{t("bosh-ish-orni")}</a>
               </div>
             {/* </div> */}
           </div>
@@ -70,37 +96,38 @@ function Footer() {
             <div className='footer__respons-items d-flex'>
               <div className='footer__item'>
                 <p>{t("foydali-sahifa")}</p>
-                <a href="#">Yangiliklar lentasi</a>
-                <a href="#">Foto-yangiliklar</a>
-                <a href="#">Video-yangiliklar</a>
+                <a href="#">{t("yangilikalar-lentasi")}</a>
+                <a href="#">{t("video-yangiliklar")}</a>
                 <a href="#">Content</a>
                 <a href="#">Integrations</a>
               </div>
               <div className='footer__item footer-res-l-item'>
                 <p>{t("ruknlar")}</p>
-                <a href="#">Siyosat</a>
-                <a href="#">Texnologiya</a>
-                <a href="#">Sport</a>
-                <a href="#">Website Builder</a>
+                <div className='footer-categor'>
+                {data.map((item) => (
+                   <NavLink to={`rukn/${item.id}`}>
+                     <p>{item.name_uz}</p>
+                   </NavLink>
+                ))}
+                </div>
               </div>
             </div>
             <div className='footer__respons-items footer-res-l d-flex'>
               <div className='footer__item footer-res-mt'>
                 <p>{t("hududlar")}</p>
-                <a href="#">Toshkent</a>
-                <a href="#">Samarqand</a>
-                <a href="#">Qashqadaryo</a>
-                <a href="#">Hosting</a>
-                <a href="#">Developers</a>
-                <a href="#">Support</a>
+                <div className='footer-category'>
+                  {region.map((item) => (
+                      <p className='footer-region-name'>{item.name}</p>
+                    ))}
+                </div>
               </div>
               <div className='footer__item footer-res-l-item footer-res-mt'>
                 <p>{t("biz-haqimizda")}</p>
                 <a href="#">About Us</a>
                 <a href="#">Careers</a>
-                <a href="#">Ko’p so’raladigan savollar</a>
-                <a href="#">Jamoa</a>
-                <a href="#">Bo’sh ish o’rni</a>
+                <a href="#">{t("kop-soralgan-savollar")}</a>
+                <a href="#">{t("jamoa")}</a>
+                <a href="#">{t("bosh-ish-orni")}</a>
               </div>
             </div>
           </div>
@@ -136,7 +163,7 @@ function Footer() {
             <p className='footer__follow-text'>Follow us</p>
             <ul className='footer__follow-list'>
               <li className='footer__follow-item'>
-                <a href="#">
+                <a href={`https://www.facebook.com/sharer.php?u=${typeof(dataFollow) !== 'undefined' ? dataFollow.facebook : "/"}`} target="_blank">
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12.7236" r="12" fill="white"/>
                     <path d="M16.7273 4.72363H14.3471C13.295 4.72363 12.286 5.14506 11.5421 5.89521C10.7981 6.64535 10.3802 7.66277 10.3802 8.72363V11.1236H8V14.3236H10.3802V20.7236H13.5537V14.3236H15.9339L16.7273 11.1236H13.5537V8.72363C13.5537 8.51146 13.6373 8.30798 13.7861 8.15795C13.9349 8.00792 14.1367 7.92363 14.3471 7.92363H16.7273V4.72363Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
@@ -144,7 +171,7 @@ function Footer() {
                 </a>
               </li>
               <li className='footer__follow-item'>
-                <a href="#">
+                <a href={`https://t.me/${typeof(dataFollow) !== "undifined" ? dataFollow.telegram : "/"}`} target="_blank">
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12.7236" r="12" fill="white"/>
                     <path d="M19 5.72363L10 14.7236" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
@@ -153,7 +180,7 @@ function Footer() {
                 </a>
               </li>
               <li className='footer__follow-item'>
-                <a href="#">
+                <a href={`https://instagram.com/${typeof(dataFollow) !== "undifined" ? dataFollow.instagram : "/"}`} target="_blank">
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12.7236" r="12" fill="white"/>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.26748 5.72363C6.4629 5.72363 5 7.18653 5 8.99111V16.5261C5 18.3306 6.4629 19.7935 8.26748 19.7935H15.8024C17.607 19.7935 19.0699 18.3306 19.0699 16.5261V8.99111C19.0699 7.18653 17.607 5.72363 15.8024 5.72363H8.26748ZM4 8.99111C4 6.63425 5.91062 4.72363 8.26748 4.72363H15.8024C18.1593 4.72363 20.0699 6.63425 20.0699 8.99111V16.5261C20.0699 18.8829 18.1593 20.7935 15.8024 20.7935H8.26748C5.91062 20.7935 4 18.8829 4 16.5261V8.99111ZM12.4364 10.2391C11.9134 10.1615 11.3792 10.2508 10.9098 10.4944C10.4404 10.7379 10.0598 11.1233 9.82209 11.5956C9.58436 12.0679 9.50161 12.6032 9.58562 13.1252C9.66962 13.6473 9.91611 14.1296 10.29 14.5035C10.6639 14.8774 11.1462 15.1239 11.6683 15.2079C12.1903 15.2919 12.7256 15.2092 13.1979 14.9714C13.6703 14.7337 14.0556 14.3531 14.2991 13.8837C14.5427 13.4144 14.632 12.8802 14.5545 12.3571C14.4753 11.8235 14.2267 11.3296 13.8453 10.9482C13.4639 10.5668 12.97 10.3182 12.4364 10.2391ZM10.4492 9.60676C11.1053 9.26634 11.852 9.14146 12.5831 9.24988C13.3289 9.36047 14.0193 9.70798 14.5524 10.2411C15.0855 10.7742 15.4331 11.4646 15.5436 12.2104C15.6521 12.9415 15.5272 13.6882 15.1868 14.3443C14.8463 15.0003 14.3077 15.5324 13.6475 15.8647C12.9873 16.197 12.2391 16.3126 11.5094 16.1952C10.7797 16.0778 10.1055 15.7332 9.58291 15.2106C9.06027 14.688 8.71574 14.0138 8.59832 13.2841C8.48089 12.5544 8.59656 11.8062 8.92886 11.146C9.26116 10.4858 9.79317 9.94717 10.4492 9.60676ZM16.1792 8.11437C15.903 8.11437 15.6792 8.33823 15.6792 8.61437C15.6792 8.89051 15.903 9.11437 16.1792 9.11437H16.1878C16.464 9.11437 16.6878 8.89051 16.6878 8.61437C16.6878 8.33823 16.464 8.11437 16.1878 8.11437H16.1792Z" fill="black"/>

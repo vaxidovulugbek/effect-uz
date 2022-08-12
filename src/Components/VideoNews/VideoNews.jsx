@@ -34,7 +34,6 @@ function VideoNews() {
       <div className='videonews__content'>
 
         <VideoPlay one={one} setOne={setOne} setVideos={setVideos} videos={videos} videobool={videobool} setVideobool={setVideobool} />
-        {/* onClick={() => setOne(item)}  */}
         <div className='videonews__ci'>
           <div className='videonews__info'> 
           {
@@ -88,7 +87,7 @@ function VideoNews() {
           <NavLink to={"/video-habarlar"}>
             <button className='d-flex align-items-center videonews__info-btn'>
               <p>{t("bo'limga-o'tish")}</p> 
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className='video-svg-btn' width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_71_3435)">
                 <path d="M5.81122 13.337H20.5696" stroke="#072D4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M16.353 17.5507L20.5697 13.337" stroke="#072D4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

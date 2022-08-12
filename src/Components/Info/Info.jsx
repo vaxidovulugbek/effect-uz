@@ -81,7 +81,10 @@ function Info({filtered}) {
     fetchData();
   }, []);
 
-// console.log(newsCategory);
+  const RotateHendler = () => {
+    setRotate(!rotate)
+    console.log(rotate);
+  }
 
   let stars = {
     star: star,
@@ -217,8 +220,8 @@ function Info({filtered}) {
          <div className='comments'>
            <div className='comments__top'>
              <div className='comments__top-text'>{t("barcha-izohlar")} (<span>{item.comment_count}</span>)</div>
-             <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onClick={() => setRotate(!rotate)} >
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={rotate === true ? {transform: { rotate: '-180deg' }} : {transform: { rotate: '30deg' }}}>
+             <button className={`rotate-btn ${rotate ? 'rotated' : ''}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onClick={RotateHendler} >
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                <circle cx="11.9683" cy="11.9683" r="11.9683" transform="rotate(-90 11.9683 11.9683)" fill="#2F9FF8"/>
                <line x1="16.0488" y1="13.1651" x2="12.567" y2="9.68335" stroke="white" stroke-linecap="round"/>
                <line x1="0.5" y1="-0.5" x2="5.42398" y2="-0.5" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 8.37793 13.1651)" stroke="white" stroke-linecap="round"/>
@@ -357,7 +360,7 @@ function Info({filtered}) {
          <div className='comments'>
            <div className='comments__top'>
              <div className='comments__top-text'>Barcha izohlar (<span>{item.comment_count}</span>)</div>
-             <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+             <button className={`rotate-btn ${rotate ? 'rotated' : ''}`} type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onClick={RotateHendler}>
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
                <circle cx="11.9683" cy="11.9683" r="11.9683" transform="rotate(-90 11.9683 11.9683)" fill="#2F9FF8"/>
                <line x1="16.0488" y1="13.1651" x2="12.567" y2="9.68335" stroke="white" stroke-linecap="round"/>

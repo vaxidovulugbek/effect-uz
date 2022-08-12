@@ -5,6 +5,8 @@
   flex-direction: column;
 }
 .info__title {
+  font-family: 'Bluu Next';
+  letter-spacing: 1px;
   font-weight: 700;
   font-size: 26px;
   line-height: 34px;
@@ -304,6 +306,9 @@
   line-height: 24px;
   color: #67727E;
 }
+.rotated {
+  transform: rotate(180deg);
+}
 
 /* START HABARLAR PART */
 .xabarlar {
@@ -464,9 +469,6 @@
     align-items: center;
     justify-content: flex-end !important;
   }
-  /* .info__title {
-    margin-top: 70px;
-  } */
   .xabarlar__item-title {
     font-size: 12px;
     line-height: 16px;

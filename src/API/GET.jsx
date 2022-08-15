@@ -2,13 +2,20 @@
 import axios from "axios";
 
 const token = "LAEQ2GUBlv8tmxCdFRvq0NhiQrGgBJlEGifjvBz4e0ZHeJZ6Dg";
-
+const tokentask = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTA0NzQ2OTcsImV4cCI6MTY2NjQ3NDY5Nywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiOTk4OTk4NTk3ODcyIn0.JJVqNcyeHx8S3FTQqBRW8rrWkn"
 const headers = {
   headers: {
     "Content-Type": "application/json;",
     Authorization: `Bearer ${token}`,
   },
 };
+const headertask = {
+  headertask: {
+    "Content-Type": "application/json;",
+    Authorization: `Bearer ${tokentask}`,
+  },
+};
+
 const CATEGORY_URL = "https://simply.uz/api/category";
 const PROVENCE_URL = "https://simply.uz/api/provence";
 const CONFIG_URL = "https://simply.uz/api/config";
@@ -28,6 +35,7 @@ const VOICE_ONE = "https://simply.uz/api/voice-one?id";
 // const NEWS_CATEGORY = "https://simply.uz/api/news-category?id"  
 
 const NEWS_CATEGORY = "https://simply.uz/api/news-category?id";
+const TASK_URL = "https://api.uracashback.uz/companies"
 
 const GET = {
   category: () => axios.get(CATEGORY_URL, headers),
@@ -46,6 +54,7 @@ const GET = {
   voice_one: (id) => axios.get(`${VOICE_ONE}=${id}`, headers),
   news_category: (id) => axios.get(`${NEWS_CATEGORY}=${id}`, headers),
   // voise: () => axios.get(VOISE_ONE_URL, headers),
+  companies_task:() => axios.get(TASK_URL, headertask)
 }
 
 export default GET 

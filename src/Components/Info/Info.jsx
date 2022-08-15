@@ -9,7 +9,7 @@ import POST from '../../API/POST'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-import Habarlar from './Habarlar';
+
 import { context } from '../../App';
 function Info({filtered}) {
   let contexts = useContext(context)
@@ -151,7 +151,7 @@ function Info({filtered}) {
                  <Rating className='info__n-rating' name="size-medium" defaultValue={1} onChange={(e) => setStar(e.target.value)} onClick={() => addStar()}  />
                </div>
                <div className='info__n-btns d-flex align-items-center'>
-                 <button><p>{t("baholangan")}:</p> <span>hali yozmadim 1203</span></button>
+                 <button><p>{t("baholangan")}:</p> <span>1203</span></button>
                  <button><p>{t("Reyting")}:</p> <span>{reyting.stars === null ? "0" : reyting.stars}</span></button>
                </div>
              </div>

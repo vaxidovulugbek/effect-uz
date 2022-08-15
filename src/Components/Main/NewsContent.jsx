@@ -16,6 +16,7 @@ function NewsContent({filtered}) {
   const [newsRest, setNewsRest] = useState([]);
   const [newsContent ,setNewsContent] = useState([])
   const [search,setSearch] = useState([])
+  const [task, settask] = useState([])
   const params = {
     count: 4
   }
@@ -27,7 +28,9 @@ function NewsContent({filtered}) {
       const newsEnd = await POST.newsFour(params)
       const newsRest = await GET.news()
       const searching = await GET.search()
+      const tasking = await GET.companies_task()
       
+      settask(tasking.data.items)
       setData(category.data);
       setNewsFour(newsEnd.data.items.slice(0, params.count))
       setNewsContent(newsEnd.data.items.slice(0, 1))
@@ -38,7 +41,7 @@ function NewsContent({filtered}) {
   useEffect(() => {
     fetchData();
   }, []);
-// console.log(search);
+console.log(task);
 
   return (
     <>

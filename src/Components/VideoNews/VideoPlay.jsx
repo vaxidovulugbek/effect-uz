@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import soldat from '../../Assets/imgs/soldat.png'
 import GET from '../../API/GET'
 import { useTranslation } from 'react-i18next'
-function VideoPlay({one,setOne,setVideos,videos,videobool,setVideobool}) {
+function VideoPlay({one,setVideos,videos,videobool,setVideobool}) {
   const {t,i18n} = useTranslation()
   const [videoURL, setVideoURL] = useState(null)
   const fetchData = async () => {
@@ -10,7 +10,7 @@ function VideoPlay({one,setOne,setVideos,videos,videobool,setVideobool}) {
       const videos  = await GET.videos();
       setVideos(videos.data.slice(0, 1));
       one.map(item => {
-        return setVideoURL(item.video_url)
+        return setVideoURL(item.video_url.slice(-11))
       })
     } catch (error) {}
   };
@@ -18,8 +18,6 @@ function VideoPlay({one,setOne,setVideos,videos,videobool,setVideobool}) {
     fetchData();
   }, []);
   
-  // console.log(one);
-
   return (
     <>
     {
@@ -44,15 +42,10 @@ function VideoPlay({one,setOne,setVideos,videos,videobool,setVideobool}) {
                  </defs>
                </svg>
              </div>
-           </div> : <iframe className="videonews-video" src={videoURL} allow="autoplay"></iframe>
-        
+           </div> : <iframe className="videonews-video" src={`https://www.youtube.com/embed/${videoURL}`} allow="autoplay"></iframe> 
       })
     }
     </>
   )
 }
-{/* <a className="videonews-video" href={videoURL}></a> */}
-{/* <iframe className="videonews-video" src={videoURL} allow="autoplay"></iframe> */}
-// ${one.map(item => {return item.video_url})}
-// {`https://www.youtube.com/embed/${one.map(item => {return item.video_url})}?autoplay=1`}
 export default VideoPlay

@@ -30,18 +30,6 @@ function Info({filtered}) {
     return await POST.comment(commentObj)
   }
 
-
-  // let commentObj = {
-  //   new_id: location1,
-  //   description: inputValue,
-  //   userAgent: userValue
-  // }
-
-  // const addCommentClicked = async () => {
-  //   setInputValue("");
-  //   setUSerValue("");
-  //   return await POST.comment(commentObj);
-  // };
   const params = {
     count: 10
   }
@@ -54,28 +42,24 @@ function Info({filtered}) {
   const [reyting, setReyting] = useState([])
   const [newsCategory, setNewsCategory] = useState([])
   const [rotate, setRotate] = useState(true)
-  // setIsLoading(true)
   const fetchData = async () => {
     try {
+      contexts.setIsLoading(true)
+      
       const newsRest = await GET.news()
       const TOP10NEWS = await GET.top10news(params)
       const newcomment = await GET.newItem(location1);
       const newsShare = await GET.config()
       const response = await GET.newItem(location1);
-      // const news_categor = await GET.news_category(location1)
-      // console.log(newsRest.status);
 
-      // setNewsCategory(news_categor.data.items)
-      // console.log(newsCategory);
       setReyting(response.data)
-      
       setData(newsShare.data)
       setNews(newcomment.data);
       setNewsLocRes(newsRest.data.items)
       setNewsTop10(TOP10NEWS.data.items)
-
+      
+      contexts.setIsLoading(false)
     } catch (error) {}
-    // setIsLoading(false)
   };
   useEffect(() => {
     fetchData();

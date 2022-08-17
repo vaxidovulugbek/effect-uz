@@ -18,12 +18,12 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [resmenu, setresmenu] = useState(true);
-  let [value,setValue] = useState("")
-  let [showSearch,setShowSearch] = useState(true)
+  const [value,setValue] = useState("")
+  const [showSearch,setShowSearch] = useState(true)
 
 setTimeout(() => {
   setIsLoading(false)
-}, 2300);
+}, 2000);
 
   return (
     <>

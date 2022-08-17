@@ -36,12 +36,12 @@ function NewsContent({filtered}) {
       setNewsContent(newsEnd.data.items.slice(0, 1))
       setNewsRest(newsRest.data.items)
       setSearch(searching.data)
+
     } catch (error) {}
   };
   useEffect(() => {
     fetchData();
   }, []);
-console.log(task);
 
   return (
     <>

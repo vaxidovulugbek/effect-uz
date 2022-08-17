@@ -9,14 +9,13 @@ function VideoNews() {
   const {t,i18n} = useTranslation()
   const [video,setVideo] = useState([])
   const [videos ,setVideos] = useState([])
-  const [one, setOne] = useState(null)
+  const [one, setOne] = useState([])
   const [videobool , setVideobool] = useState(false)
   const fetchData = async () => {
     try {
       const videos  = await GET.videos();
       setVideo(videos.data);
       setOne(videos.data.slice(0, 1))
-  // console.log(videos.data);
 
     } catch (error) {}
   };
@@ -28,12 +27,15 @@ function VideoNews() {
     setVideos([item])
     setVideobool(true)
   }
+  // one.map(item => {
+  //   return 
+  // })
   return (
     <div className='videonews'>
       <h2 className='videonews__title'>{t("video-yangiliklar")}</h2>
       <div className='videonews__content'>
 
-        <VideoPlay one={one} setOne={setOne} setVideos={setVideos} videos={videos} videobool={videobool} setVideobool={setVideobool} />
+        <VideoPlay one={one} setVideos={setVideos} videos={videos} videobool={videobool} setVideobool={setVideobool} />
         <div className='videonews__ci'>
           <div className='videonews__info'> 
           {

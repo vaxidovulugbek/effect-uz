@@ -1,6 +1,6 @@
 import { Rating } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, useLocation ,useParams } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Aside from '../Aside/Aside'
 import parse from 'html-react-parser';
 import './Info.css'
@@ -38,13 +38,11 @@ function Info({filtered}) {
   const [newcomments, setNews] = useState([]);
   const [data,setData] = useState([])
   const [newsTop10, setNewsTop10] = useState([]);
-  const [baxolangan, setBaxolangan] = useState([])
   const [reyting, setReyting] = useState([])
-  const [newsCategory, setNewsCategory] = useState([])
   const [rotate, setRotate] = useState(true)
   const fetchData = async () => {
     try {
-      contexts.setIsLoading(true)
+      // contexts.setIsLoading(true)
       
       const newsRest = await GET.news()
       const TOP10NEWS = await GET.top10news(params)
@@ -58,7 +56,7 @@ function Info({filtered}) {
       setNewsLocRes(newsRest.data.items)
       setNewsTop10(TOP10NEWS.data.items)
       
-      contexts.setIsLoading(false)
+      // contexts.setIsLoading(false)
     } catch (error) {}
   };
   useEffect(() => {
@@ -256,9 +254,8 @@ function Info({filtered}) {
 
 {
    newsTop10.map((item,i) => {
-        //  console.log(item);
         if(+location1 === item.id) {
-          return  <div className='info'>
+          return  <div className='info' key={i+10}>
          <h2 className='info__title'>{i18n.language === "uz" ? item.title_uz :  i18n.language === "ru" ?  item.title_ru  : i18n.language === "oz" ?  item.title_oz : item.title_uz }</h2>
          <div className='info__category-btns d-flex align-items-center'>
            <button>{item.category_id}</button>
@@ -304,8 +301,6 @@ function Info({filtered}) {
              <button className='info__bottom-btn d-flex align-items-center'>
                <span className='info__bottom-link'>https://effect.uz/posts/1548</span>
                <span className='info__bottom-hr'></span>
-
-             
 
                <span className='info__bottom-copy'
                 onClick={() => {
@@ -394,14 +389,10 @@ function Info({filtered}) {
         }
        })
      }
-
-
-
       <div className='info-respons-aside'>
        <Aside />
       </div>
     </div>
-    {/* <Habarlar /> */}
   </>
   )
 }

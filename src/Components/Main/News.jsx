@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from 'react-router-dom';
 import '../../i18n';
 import GET from '../../API/GET'
-import POST from '../../API/POST'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 function News() {
@@ -23,7 +22,6 @@ function News() {
   // CARUSEL PART 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 2000, min: 2000 },
       items: 4
     },

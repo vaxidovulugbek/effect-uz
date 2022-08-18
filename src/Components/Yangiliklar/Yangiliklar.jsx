@@ -26,7 +26,7 @@ function Yangiliklar({filtered,showSearch}) {
   return (
   <>
       <div className='d-flex'>
-      <div>
+      <div className='yangiliklar-contents'>
         <p className='yangiliklar-name'>{t("yangilikalar-lentasi")}</p>
         <div className='yangiliklar'>
        <div> 
